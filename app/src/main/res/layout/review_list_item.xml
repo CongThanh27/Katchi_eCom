@@ -32,7 +32,7 @@
                     android:gravity="start"
                     android:padding="@dimen/dimen10dp"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/dimen18sp"
+                    android:textSize="12sp"
                     tools:text="@string/marwa_eltayeb" />
 
                 <TextView
@@ -43,7 +43,7 @@
                     android:gravity="end"
                     android:padding="@dimen/dimen10dp"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/dimen16sp"
+                    android:textSize="12sp"
                     tools:text="@string/dateOfReview" />
             </LinearLayout>
 
@@ -63,11 +63,11 @@
                 android:id="@+id/userFeedback"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxLines="5"
                 android:layout_margin="@dimen/dimen10dp"
-                android:textColor="@color/vDarkGray"
-                android:textSize="@dimen/dimen18sp"
+                android:maxLines="5"
                 android:textAlignment="textStart"
+                android:textColor="@color/vDarkGray"
+                android:textSize="12sp"
                 tools:text="Very good product with good quality Very good product with good quality Very good product with good quality" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
