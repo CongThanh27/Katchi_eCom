@@ -6,7 +6,8 @@
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/lightGray">
+        android:background="@color/lightGray"
+        android:textAlignment="textStart">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,10 +48,272 @@
                 android:background="@color/white"
                 android:padding="10dp"
 
-                android:textSize="@dimen/dimen20sp"
                 android:textColor="@color/red"
+                android:textSize="@dimen/dimen20sp"
                 android:textStyle="bold"
-                tools:text="2,399.00 EGP" />
+                tools:text="89.000VND" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen1dp"
+                android:background="@color/lightGray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="0dp"
+                android:background="#FFFFFF"
+                android:gravity="left"
+                android:orientation="horizontal"
+                android:paddingStart="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:text="Quantity: "
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/decrementQuantity"
+                    android:layout_width="48dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#eeeeee"
+                    android:onClick="decrement"
+                    android:text="-"
+                    android:textColor="@android:color/black" />
+
+                <EditText
+                    android:id="@+id/quantityProductPage"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:text="1" />
+
+                <Button
+                    android:id="@+id/incrementQuantity"
+                    android:layout_width="48dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#eeeeee"
+                    android:onClick="increment"
+                    android:text="+"
+                    android:textColor="@android:color/black" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view5"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen1dp"
+                android:background="@color/lightGray" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:background="#FFFFFF"
+                android:drawableStart="@drawable/baseline_location_on_24"
+                android:paddingStart="10dp"
+                android:text="99/100 Chi nhánh còn hàng"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:background="#FBFBFB"
+                android:orientation="vertical"
+
+                android:paddingStart="10dp"
+                android:paddingBottom="@dimen/activity_vertical_margin">
+
+                <Button
+                    android:id="@+id/button4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"
+                    android:padding="0dp"
+                    android:paddingStart="0dp"
+                    android:background="@drawable/button_background"
+                    android:text="Mô tả sản phẩm"
+                    android:textAlignment="viewStart"
+                    android:textAllCaps="false"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/productdesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Tất cả các sản phẩm của BIODERMA đều được bào chế theo nguyên tắc sinh học tự nhiên, là chiến lược trọng tâm của NAOS trong việc bảo vệ và tôn vinh hệ sinh học của làn da bạn."
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:background="#FBFBFB"
+                android:orientation="vertical"
+                android:paddingStart="10dp"
+
+                android:paddingBottom="@dimen/activity_vertical_margin">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Thông số sản phẩm"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textView12"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:text="Thương hiệu"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/textView11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="BIODEMA"
+                            android:textColor="#020202"
+                            android:textSize="12sp"
+                            android:textStyle="italic" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textView13"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:text="Xuất sứ thương hiệu"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/textView14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pháp"
+                            android:textColor="#020202"
+                            android:textSize="12sp"
+                            android:textStyle="italic" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textView15"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:text="Nơi sản xuất"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/textView16"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#020202"
+                            android:textSize="12sp"
+                            android:textStyle="italic" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textView17"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:text="Loại da"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/textView18"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mọi loại da"
+                            android:textColor="#020202"
+                            android:textSize="12sp"
+                            android:textStyle="italic" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textView19"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:text="Giới tính"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/textView20"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nam, Nữ"
+                            android:textColor="#020202"
+                            android:textSize="12sp"
+                            android:textStyle="italic" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textView21"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:text="Vấn đề về da"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/textView22"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Da nhạy cảm, kích ứng"
+                            android:textColor="#020202"
+                            android:textSize="12sp"
+                            android:textStyle="italic" />
+                    </TableRow>
+
+                </TableLayout>
+
+            </LinearLayout>
 
             <View
                 android:id="@+id/view2"
@@ -58,19 +321,78 @@
                 android:layout_height="@dimen/dimen1dp"
                 android:background="@color/lightGray" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:background="#FBFBFB"
+                android:orientation="horizontal"
+                android:paddingStart="10dp">
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:padding="0dp"
+                    android:textSize="16dp"
+                    android:textAllCaps="false"
+                    android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"
+                    android:paddingStart="0dp"
+                    android:text="Hướng dẫn sử dụng"
+                    android:textAlignment="viewStart"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view6"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen1dp"
+                android:background="@color/lightGray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:background="#FBFBFB"
+                android:orientation="horizontal"
+                android:paddingStart="10dp">
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"
+                    android:padding="0dp"
+                    android:paddingStart="0dp"
+                    android:textAllCaps="false"
+                    android:text="Thành phần sản phẩm"
+                    android:textAlignment="viewStart"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
             <Button
                 android:id="@+id/addToCart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
-                android:layout_marginEnd="40dp"
                 android:layout_marginTop="@dimen/dimen10dp"
+                android:layout_marginEnd="40dp"
                 android:layout_marginBottom="@dimen/dimen10dp"
                 android:background="@color/green"
                 android:padding="10dp"
                 android:text="@string/add_to_cart"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/buy"
@@ -83,11 +405,13 @@
                 android:text="@string/buy"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:background="@color/white"
                 android:orientation="horizontal">
 
@@ -98,9 +422,9 @@
                     android:layout_weight="1"
                     android:gravity="start"
                     android:padding="@dimen/dimen10dp"
+                    android:text="Đánh giá"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/dimen20sp"
-                    android:text="@string/reviews" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/txtSeeAllReviews"
@@ -109,10 +433,10 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:padding="@dimen/dimen10dp"
+                    android:text="Xem tất cả"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/dimen18sp"
-                    android:textStyle="bold"
-                    android:text="@string/see_all" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -127,11 +451,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
+                android:background="@color/white"
                 android:padding="@dimen/dimen10dp"
                 android:text="@string/be_the_first_to_review_this_product"
                 android:textColor="@color/vDarkGray"
                 android:textSize="20sp"
-                android:background="@color/white"
                 android:visibility="gone" />
 
             <TextView
