@@ -26,3 +26,4 @@
             app:menu="@menu/activity_product_drawer" />
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>
+
