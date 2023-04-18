@@ -120,6 +120,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         getMobiles();
         getLaptops();
         getHistory();
+        getSales();
         getUserImage();
 
         flipImages(Slide.getSlides());
@@ -161,6 +162,10 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         binding.included.content.historyList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         binding.included.content.historyList.setItemAnimator(null);
 
+        binding.included.content.listOfSale.setHasFixedSize(true);
+        binding.included.content.listOfSale.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        binding.included.content.listOfSale.setItemAnimator(null);
+
         mobileAdapter = new ProductAdapter(this, this);
         laptopAdapter = new ProductAdapter(this, this);
         historyAdapter = new ProductAdapter(this, this);
@@ -175,6 +180,18 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
             productViewModel.productPagedList.observe(this, products -> mobileAdapter.submitList(products));
 
             binding.included.content.listOfMobiles.setAdapter(mobileAdapter);
+        } else {
+            showOrHideViews(View.INVISIBLE);
+            showSnackBar();
+        }
+    }
+
+
+    private void getSales() {
+        if (isNetworkConnected(this)) {
+            productViewModel.productPagedList.observe(this, products -> mobileAdapter.submitList(products));
+
+            binding.included.content.listOfSale.setAdapter(mobileAdapter);
         } else {
             showOrHideViews(View.INVISIBLE);
             showSnackBar();
