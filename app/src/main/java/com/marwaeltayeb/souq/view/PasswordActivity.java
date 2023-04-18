@@ -3,6 +3,7 @@ package com.marwaeltayeb.souq.view;
 import static com.marwaeltayeb.souq.storage.LanguageUtils.loadLocale;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ public class PasswordActivity extends AppCompatActivity implements View.OnClickL
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(getResources().getString(R.string.change_password));
 
+
         passwordViewModel = ViewModelProviders.of(this).get(PasswordViewModel.class);
 
         binding.saveChanges.setOnClickListener(this);
@@ -60,17 +62,18 @@ public class PasswordActivity extends AppCompatActivity implements View.OnClickL
 
     private void updatePassword() {
         int userId = LoginUtils.getInstance(this).getUserInfo().getId();
-        String token = LoginUtils.getInstance(this).getUserToken();
+        //String token = LoginUtils.getInstance(this).getUserToken();
+
         String oldPassword = LoginUtils.getInstance(this).getUserInfo().getPassword();
         String currentPassword = binding.currentPassword.getText().toString();
         String newPassword = binding.newPassword.getText().toString();
         String retypePassword =binding.retypePassword.getText().toString();
 
-        if(!currentPassword.equals(oldPassword)){
-            binding.currentPassword.setError(getString(R.string.enter_current_password));
-            binding.currentPassword.requestFocus();
-            return;
-        }
+//        if(!currentPassword.equals(oldPassword)){
+//            binding.currentPassword.setError(getString(R.string.enter_current_password));
+//            binding.currentPassword.requestFocus();
+//            return;
+//        }
 
         if (!Validation.isValidPassword(newPassword)) {
             binding.newPassword.setError(getString(R.string.password__at_least_8_characters));
@@ -84,7 +87,7 @@ public class PasswordActivity extends AppCompatActivity implements View.OnClickL
             return;
         }
 
-        passwordViewModel.updatePassword(token,newPassword, userId).observe(this, responseBody -> {
+        passwordViewModel.updatePassword(newPassword, userId).observe(this, responseBody -> {
             try {
                 Toast.makeText(PasswordActivity.this, responseBody.string(), Toast.LENGTH_SHORT).show();
                 finish();
