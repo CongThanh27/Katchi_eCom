@@ -115,4 +115,18 @@ public interface Api {
 
     @POST("orders/add")
     Call<ResponseBody> orderProduct(@Body Ordering ordering);
+
+    //Home
+    @GET("products/flashsale")
+    Call<ProductApiResponse> getProductsFlashsale(@Query("userId") int userId,@Query("page") int page);
+    @GET("products/rain")
+    Call<ProductApiResponse> getProductsRain(@Query("userId") int userId,@Query("page") int page);
+    @GET("products/sold")
+    Call<ProductApiResponse> getProductsSold(@Query("userId") int userId,@Query("page") int page);
+    @GET("products/share")
+    Call<ProductApiResponse> getProductsShare(@Query("userId") int userId,@Query("page") int page);
+    @GET("products/cart")
+    Call<ProductApiResponse> getProductsCart(@Query("userId") int userId,@Query("page") int page);
+    @GET("products/favorite")
+    Call<ProductApiResponse> getProductsFavorite(@Query("userId") int userId,@Query("page") int page);
 }

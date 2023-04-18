@@ -82,11 +82,15 @@ public class ProductAdapter extends PagedListAdapter<Product, ProductAdapter.Pro
         if (product != null) {
             String productName = product.getProductName();
             holder.binding.txtProductName.setText(productName);
-
+            //định dạng giá
             DecimalFormat formatter = new DecimalFormat("#,###,###");
             String formattedPrice = formatter.format(product.getProductPrice());
+            String formattedPriceOld = formatter.format(product.getPriceold());
             holder.binding.txtProductPrice.setText(formattedPrice + " VNĐ");
-
+            holder.binding.txtProductPriceOld.setText(formattedPriceOld + " VNĐ");
+            holder.binding.txtshare.setText("("+product.getShare()+")");
+            holder.binding.txtrain.setText(product.getRain()+".0");
+            holder.binding.txtsocart.setText("("+product.getAddtocart()+")");
             // Load the Product image into ImageView
             String imageUrl = LOCALHOST + product.getProductImage().replaceAll("\\\\", "/");
             Glide.with(mContext)
@@ -111,7 +115,6 @@ public class ProductAdapter extends PagedListAdapter<Product, ProductAdapter.Pro
             Toast.makeText(mContext, "Product is null", Toast.LENGTH_LONG).show();
         }
     }
-
     @Override
     public long getItemId(int position) {
         return position;
@@ -127,21 +130,19 @@ public class ProductAdapter extends PagedListAdapter<Product, ProductAdapter.Pro
         notifyItemRangeInserted(position, getCurrentList().size()-1);
         notifyDataSetChanged();
     }
-
+//Nó xác định xem hai đối tượng danh sách có giống nhau hay không
     // It determine if two list objects are the same or not
     private static final DiffUtil.ItemCallback<Product> DIFF_CALLBACK = new DiffUtil.ItemCallback<Product>() {
         @Override
         public boolean areItemsTheSame(@NonNull Product oldProduct, @NonNull Product newProduct) {
             return oldProduct.getProductName().equals(newProduct.getProductName());
         }
-
         @SuppressLint("DiffUtilEquals")
         @Override
         public boolean areContentsTheSame(@NonNull Product oldProduct, @NonNull Product newProduct) {
             return oldProduct.equals(newProduct);
         }
     };
-
     class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // Create view instances
         private final ProductListItemBinding binding;

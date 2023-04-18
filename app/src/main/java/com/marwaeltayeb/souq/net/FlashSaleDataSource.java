@@ -1,6 +1,7 @@
 package com.marwaeltayeb.souq.net;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.paging.PageKeyedDataSource;
@@ -12,23 +13,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProductDataSource extends PageKeyedDataSource<Integer, Product> {
-
-    private static final String TAG = "ProductDataSource";
+public class FlashSaleDataSource extends PageKeyedDataSource<Integer, Product> {
+    private static final String TAG = "FlashSaleDataSource";
     private static final int FIRST_PAGE = 1;
     public static final int PAGE_SIZE = 20;
-    private final String category;
     private final int userId;
 
-    ProductDataSource(String category, int userId) {
-        this.category = category;
+    public FlashSaleDataSource(int userId) {
         this.userId = userId;
     }
 
+
     @Override
-    public void loadInitial(@NonNull LoadInitialParams<Integer> params, @NonNull final LoadInitialCallback<Integer, Product> callback) {
+    public void loadInitial(@NonNull LoadInitialParams<Integer> params, @NonNull LoadInitialCallback<Integer, Product> callback) {
         RetrofitClient.getInstance()
-                .getApi().getProductsByCategory(category, userId,FIRST_PAGE)
+                .getApi().getProductsFlashsale( userId,FIRST_PAGE)
                 .enqueue(new Callback<ProductApiResponse>() {
                     @Override
                     public void onResponse(Call<ProductApiResponse> call, Response<ProductApiResponse> response) {
@@ -51,9 +50,9 @@ public class ProductDataSource extends PageKeyedDataSource<Integer, Product> {
     }
 
     @Override
-    public void loadBefore(@NonNull final LoadParams<Integer> params, @NonNull final LoadCallback<Integer, Product> callback) {
+    public void loadBefore(@NonNull LoadParams<Integer> params, @NonNull LoadCallback<Integer, Product> callback) {
         RetrofitClient.getInstance()
-                .getApi().getProductsByCategory(category,userId,params.key)
+                .getApi().getProductsFlashsale(userId,params.key)
                 .enqueue(new Callback<ProductApiResponse>() {
                     @Override
                     public void onResponse(Call<ProductApiResponse> call, Response<ProductApiResponse> response) {
@@ -72,9 +71,9 @@ public class ProductDataSource extends PageKeyedDataSource<Integer, Product> {
     }
 
     @Override
-    public void loadAfter(@NonNull final LoadParams<Integer> params, @NonNull final LoadCallback<Integer, Product> callback) {
+    public void loadAfter(@NonNull LoadParams<Integer> params, @NonNull LoadCallback<Integer, Product> callback) {
         RetrofitClient.getInstance()
-                .getApi().getProductsByCategory(category,userId,params.key)
+                .getApi().getProductsFlashsale(userId,params.key)
                 .enqueue(new Callback<ProductApiResponse>() {
                     @Override
                     public void onResponse(Call<ProductApiResponse> call, Response<ProductApiResponse> response) {
@@ -92,10 +91,6 @@ public class ProductDataSource extends PageKeyedDataSource<Integer, Product> {
                         Log.v(TAG, "Failed to get next Products");
                     }
                 });
+
     }
 }
-//Đây là mã Java cho một PageKeyedDataSource, là một phần của thư viện Paging của Android Jetpack. Mục đích của lớp này là cung cấp dữ liệu cho một danh sách được phân trang trong ứng dụng Android. Nó được sử dụng để tải dữ liệu theo từng trang và giữ dữ liệu trong bộ nhớ đệm để tránh tải lại dữ liệu khi người dùng cuộn danh sách.
-//
-//Lớp ProductDataSource này lấy dữ liệu về sản phẩm từ API thông qua RetrofitClient và trả về danh sách sản phẩm dưới dạng PageKeyedDataSource. Nó sử dụng phương thức loadInitial() để tải dữ liệu của trang đầu tiên và phương thức loadAfter() và loadBefore() để tải các trang tiếp theo hoặc trước đó.
-//
-//Các biến FIRST_PAGE, PAGE_SIZE, category và userId là các tham số được sử dụng để truyền thông tin tải dữ liệu từ API. Log.v() được sử dụng để ghi lại thông tin về việc tải dữ liệu hoặc xảy ra lỗi. Các phương thức onResponse() và onFailure() được triệu gọi khi kết quả trả về từ API được xử lý hoặc xảy ra lỗi trong quá trình tải dữ liệu.

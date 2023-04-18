@@ -13,8 +13,12 @@ public class Product implements Parcelable {
     private String productName;
     @SerializedName("price")
     private double productPrice;
+    @SerializedName("priceold")
+    private double priceold;
     @SerializedName("quantity")
     private int productQuantity;
+    @SerializedName("sold")
+    private int sold;
     @SerializedName("supplier")
     private String productSupplier;
     @SerializedName("category")
@@ -31,6 +35,14 @@ public class Product implements Parcelable {
     private String sex;
     @SerializedName("skinproblems")
     private String skinproblems;
+    @SerializedName("addtocart")
+    private String addtocart;
+    @SerializedName("addtofavorite")
+    private String addtofavorite;
+    @SerializedName("share")
+    private int share;
+    @SerializedName("rain")
+    private int rain;
     @SerializedName("active")
     private int active;
     @SerializedName("isFavourite")
@@ -40,24 +52,21 @@ public class Product implements Parcelable {
     // Include child Parcelable objects
     private Product mInfo;
 
-    public Product(int productId, String productName, double productPrice, int productQuantity, String productSupplier, String productCategory, String productImage, String describe, String trademark, String origin, String sex, String skinproblems, int active) {
-        this.productId = productId;
+    public Product(String productName, double productPrice, double priceold, int productQuantity, String productSupplier, String productCategory, String describe, String trademark, String origin, String sex, String skinproblems) {
         this.productName = productName;
         this.productPrice = productPrice;
+        this.priceold = priceold;
         this.productQuantity = productQuantity;
         this.productSupplier = productSupplier;
         this.productCategory = productCategory;
-        this.productImage = productImage;
         this.describe = describe;
         this.trademark = trademark;
         this.origin = origin;
         this.sex = sex;
         this.skinproblems = skinproblems;
-        this.active = active;
     }
 
-
-    public Product() { }
+   public  Product(){}
 
     public int getProductId() {
         return productId;
@@ -71,96 +80,60 @@ public class Product implements Parcelable {
         return productPrice;
     }
 
-    public String getProductImage() {
-        return productImage;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public void setProductPrice(double productPrice) {
-        this.productPrice = productPrice;
+    public double getPriceold() {
+        return priceold;
     }
 
     public int getProductQuantity() {
         return productQuantity;
     }
 
-    public void setProductQuantity(int productQuantity) {
-        this.productQuantity = productQuantity;
-    }
-
-    public String getProductSupplier() {
-        return productSupplier;
-    }
-
-    public void setProductSupplier(String productSupplier) {
-        this.productSupplier = productSupplier;
+    public int getSold() {
+        return sold;
     }
 
     public String getProductCategory() {
         return productCategory;
     }
 
-    public void setProductCategory(String productCategory) {
-        this.productCategory = productCategory;
-    }
-
-    public void setProductImage(String productImage) {
-        this.productImage = productImage;
+    public String getProductImage() {
+        return productImage;
     }
 
     public String getDescribe() {
         return describe;
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe;
-    }
-
     public String getTrademark() {
         return trademark;
-    }
-
-    public void setTrademark(String trademark) {
-        this.trademark = trademark;
-    }
-
-    public String getOrigin() {
-        return origin;
-    }
-
-    public void setOrigin(String origin) {
-        this.origin = origin;
     }
 
     public String getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
     public String getSkinproblems() {
         return skinproblems;
     }
 
-    public void setSkinproblems(String skinproblems) {
-        this.skinproblems = skinproblems;
+    public String getAddtocart() {
+        return addtocart;
     }
 
-    public int getActive() {
-        return active;
+    public String getAddtofavorite() {
+        return addtofavorite;
     }
 
-    public void setActive(int active) {
-        this.active = active;
+    public int getShare() {
+        return share;
+    }
+
+    public int getRain() {
+        return rain;
+    }
+
+    public String getOrigin() {
+        return origin;
     }
     public int isFavourite() {
         return isFavourite;
@@ -169,7 +142,6 @@ public class Product implements Parcelable {
     public int isInCart() {
         return isInCart;
     }
-
     public void setIsFavourite(boolean isFavourite) {
         this.isFavourite = isFavourite ? 1 : 0;
     }
@@ -185,7 +157,9 @@ public class Product implements Parcelable {
         out.writeInt(productId);
         out.writeString(productName);
         out.writeDouble(productPrice);
+        out.writeDouble(priceold);
         out.writeInt(productQuantity);
+        out.writeInt(sold);
         out.writeString(productSupplier);
         out.writeString(productCategory);
         out.writeString(productImage);
@@ -194,6 +168,10 @@ public class Product implements Parcelable {
         out.writeString(origin);
         out.writeString(sex);
         out.writeString(skinproblems);
+        out.writeString(addtocart);
+        out.writeString(addtofavorite);
+        out.writeInt(share);
+        out.writeInt(rain);
         out.writeInt(active);
         out.writeInt(isFavourite);
         out.writeInt(isInCart);
@@ -206,16 +184,22 @@ public class Product implements Parcelable {
         productId = in.readInt();
         productName = in.readString();
         productPrice = in.readDouble();
+        priceold = in.readDouble();
         productQuantity = in.readInt();
+        sold = in.readInt();
         productSupplier = in.readString();
         productCategory = in.readString();
+        productImage = in.readString();
         describe= in.readString();
         trademark= in.readString();
         origin= in.readString();
         sex= in.readString();
         skinproblems= in.readString();
+        addtocart= in.readString();
+        addtofavorite= in.readString();
+        share = in.readInt();
+        rain = in.readInt();
         active = in.readInt();
-        productImage = in.readString();
         isFavourite = in.readInt();
         isInCart = in.readInt();
         mInfo = in.readParcelable(Product.class.getClassLoader());
