@@ -13,6 +13,7 @@
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#EEFAF1"
             tools:context=".view.ProductActivity">
 
             <ViewFlipper
@@ -27,15 +28,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:background="@drawable/slide1" />
+
+                tools:background="@drawable/s4" />
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/list_chose"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageSlider"
@@ -44,24 +46,26 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:background="@drawable/danhmucsp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="15dp"
+                    >
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/signup_background"
+
                         android:elevation="5dp"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/imageView6"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_margin="5dp"
-                            app:srcCompat="@drawable/ic_2" />
+                            app:srcCompat="@drawable/sale_64" />
 
                         <TextView
                             android:id="@+id/textView6"
@@ -70,7 +74,7 @@
                             android:layout_margin="5dp"
                             android:text="Sale"
                             android:textAlignment="center"
-                            android:textColor="#ffffff"
+                            android:textColor="#15370A"
                             android:textSize="14sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -78,19 +82,18 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/signup_background"
+
                         android:elevation="5dp"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/imageView1"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_margin="5dp"
-                            app:srcCompat="@drawable/ic_2" />
+                            app:srcCompat="@drawable/live_64" />
 
                         <TextView
                             android:id="@+id/textView1"
@@ -99,7 +102,7 @@
                             android:layout_margin="5dp"
                             android:text="Live"
                             android:textAlignment="center"
-                            android:textColor="#ffffff"
+                            android:textColor="#15370A"
                             android:textSize="14sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -107,19 +110,18 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/signup_background"
+
                         android:elevation="5dp"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/imageView2"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_margin="5dp"
-                            app:srcCompat="@drawable/ic_2" />
+                            app:srcCompat="@drawable/coupon_64" />
 
                         <TextView
                             android:id="@+id/textView2"
@@ -128,7 +130,7 @@
                             android:layout_margin="5dp"
                             android:text="Coupon"
                             android:textAlignment="center"
-                            android:textColor="#ffffff"
+                            android:textColor="#15370A"
                             android:textSize="14sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -141,35 +143,35 @@
                 android:id="@+id/list_chose1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/list_chose"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
                 tools:ignore="MissingConstraints">
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/danhmucsp"
                     android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/signup_background"
+
                         android:elevation="5dp"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/imageView3"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_margin="5dp"
-                            app:srcCompat="@drawable/ic_2" />
+                            app:srcCompat="@drawable/ship_64" />
 
                         <TextView
                             android:id="@+id/textView3"
@@ -178,7 +180,7 @@
                             android:layout_margin="5dp"
                             android:text="Ship"
                             android:textAlignment="center"
-                            android:textColor="#ffffff"
+                            android:textColor="#15370A"
                             android:textSize="14sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -186,19 +188,18 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/signup_background"
+
                         android:elevation="5dp"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/imageView4"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_margin="5dp"
-                            app:srcCompat="@drawable/ic_2" />
+                            app:srcCompat="@drawable/mail_64" />
 
                         <TextView
                             android:id="@+id/textView4"
@@ -207,7 +208,7 @@
                             android:layout_margin="5dp"
                             android:text="Mall"
                             android:textAlignment="center"
-                            android:textColor="#ffffff"
+                            android:textColor="#15370A"
                             android:textSize="14sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -215,19 +216,17 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/signup_background"
                         android:elevation="5dp"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/imageView5"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_margin="5dp"
-                            app:srcCompat="@drawable/ic_2" />
+                            app:srcCompat="@drawable/coin_64" />
 
                         <TextView
                             android:id="@+id/textView5"
@@ -236,7 +235,7 @@
                             android:layout_margin="5dp"
                             android:text="Coin"
                             android:textAlignment="center"
-                            android:textColor="#ffffff"
+                            android:textColor="#15370A"
                             android:textSize="14sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -245,49 +244,50 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-           <ImageView
-               android:id="@+id/image1"
-               android:layout_width="match_parent"
-               android:layout_height="140dp"
-               android:layout_margin="10dp"
-               android:background="@drawable/slide2"
-               app:layout_constraintTop_toBottomOf="@+id/list_chose1"/>
+            <ImageView
+                android:id="@+id/image1"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/s3"
+                app:layout_constraintTop_toBottomOf="@+id/list_chose1" />
 
             <TextView
                 android:id="@+id/textViewSales"
-                android:layout_marginTop="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:ignore="MissingConstraints"
                 android:layout_marginStart="25dp"
+                android:layout_marginTop="15dp"
+                android:drawableStart="@drawable/baseline_discount_24"
                 android:text="Flash Sale"
-                android:textColor="@color/red"
-                android:textSize="@dimen/dimen20sp"
+                android:textColor="#DC4B36"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image1"/>
+                app:layout_constraintTop_toBottomOf="@+id/image1"
+                tools:ignore="MissingConstraints" />
 
             <TextView
                 android:id="@+id/textSeeAllSales"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:ignore="MissingConstraints"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="25dp"
-                android:text="@string/see_all"
+                android:background="@drawable/baseline_arrow_forward_ios_24"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/dimen20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image1"/>
+                app:layout_constraintTop_toBottomOf="@+id/image1"
+                tools:ignore="MissingConstraints" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listOfSale"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="290dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
+                android:minHeight="290dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewSales" />
@@ -297,9 +297,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:text="@string/mobile"
+                android:text="Makeup"
                 android:textColor="#24832D"
-                android:textSize="@dimen/dimen20sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/listOfSale" />
@@ -309,7 +309,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="25dp"
-                android:text="@string/see_all"
+                android:background="@drawable/baseline_arrow_forward_ios_24"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/dimen20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -319,10 +319,10 @@
                 android:id="@+id/listOfMobiles"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="290dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
+                android:minHeight="290dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewMobiles" />
@@ -333,10 +333,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="10dp"
+                android:text="Skincare"
                 android:textColor="#24832D"
-                android:text="@string/laptop"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                android:textSize="@dimen/dimen20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/listOfMobiles" />
 
@@ -346,7 +346,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="25dp"
-                android:text="@string/see_all"
+                android:background="@drawable/baseline_arrow_forward_ios_24"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/dimen20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -356,10 +356,10 @@
                 android:id="@+id/listOfLaptops"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="290dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
+                android:minHeight="290dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtSeeAllLaptops" />
@@ -370,10 +370,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="15dp"
-                android:textStyle="bold"
-                android:textColor="#24832D"
                 android:text="@string/recently_viewed_items"
+                android:textColor="#24832D"
                 android:textSize="@dimen/dimen20sp"
+                android:textStyle="bold"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/listOfLaptops" />
@@ -383,8 +383,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
                 android:layout_marginBottom="25dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

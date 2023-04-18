@@ -6,9 +6,10 @@ import androidx.paging.PageKeyedDataSource;
 
 import com.marwaeltayeb.souq.model.Product;
 
+
 public class FlashSaleDataSourceFactory extends DataSource.Factory{
     // Creating the mutable live database
-    private final MutableLiveData<PageKeyedDataSource<Integer, Product>> flashsaleLiveDataSource = new MutableLiveData<>();
+    private final MutableLiveData<PageKeyedDataSource<Integer, Product>> flashSaleLiveDataSource = new MutableLiveData<>();
     public static FlashSaleDataSource flashSaleDataSource;
     private final int userId;
 
@@ -22,7 +23,7 @@ public class FlashSaleDataSourceFactory extends DataSource.Factory{
         flashSaleDataSource = new FlashSaleDataSource(userId);
 
         // Posting the Data source to get the values
-        flashsaleLiveDataSource.postValue(flashSaleDataSource);
+        flashSaleLiveDataSource.postValue(flashSaleDataSource);
 
         // Returning the Data source
         return flashSaleDataSource;

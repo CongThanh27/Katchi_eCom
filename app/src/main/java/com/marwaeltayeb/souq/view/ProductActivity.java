@@ -80,8 +80,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
     private ProductAdapter mobileAdapter;
     private ProductAdapter laptopAdapter;
     private ProductAdapter historyAdapter;
-
-    private ProductAdapter flashsaleAdapter;
+    private ProductAdapter flashSaleAdapter;
 
     private ProductViewModel productViewModel;
     private HistoryViewModel historyViewModel;
@@ -103,9 +102,10 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         int userID = LoginUtils.getInstance(this).getUserInfo().getId();
 
         productViewModel = ViewModelProviders.of(this).get(ProductViewModel.class);
+        productViewModel.loadFlashSale(userID);
         productViewModel.loadMobiles("Makeup", userID);
         productViewModel.loadLaptops("Skincare",userID);
-        productViewModel.loadFlashSale(userID);
+
 
         historyViewModel = ViewModelProviders.of(this).get(HistoryViewModel.class);
         historyViewModel.loadHistory(userID);
@@ -119,8 +119,9 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         binding.included.content.txtCash.setOnClickListener(this);
         binding.included.content.txtReturn.setOnClickListener(this);
         binding.included.txtSearch.setOnClickListener(this);
-        getSales();
+
         setUpViews();
+        getSales();
         getMobiles();
         getLaptops();
         getHistory();
@@ -170,7 +171,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         binding.included.content.listOfSale.setItemAnimator(null);
 
         mobileAdapter = new ProductAdapter(this, this);
-        flashsaleAdapter = new ProductAdapter(this, this);
+        flashSaleAdapter = new ProductAdapter(this, this);
         laptopAdapter = new ProductAdapter(this, this);
         historyAdapter = new ProductAdapter(this, this);
 
@@ -181,9 +182,10 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
 
     private void getMobiles() {
         if (isNetworkConnected(this)) {
-            productViewModel.productPagedList.observe(this, products -> flashsaleAdapter.submitList(products));
+            productViewModel.productPagedList.observe(this, products -> mobileAdapter.submitList(products));
+            //binding.included.content.listOfSale.setAdapter(flashSaleAdapter);
+            binding.included.content.listOfMobiles.setAdapter(mobileAdapter);
 
-            binding.included.content.listOfMobiles.setAdapter(flashsaleAdapter);
         } else {
             showOrHideViews(View.INVISIBLE);
             showSnackBar();
@@ -194,8 +196,8 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
     private void getSales() {
         Toast.makeText(this, "getSales",Toast.LENGTH_SHORT).show();
         if (isNetworkConnected(this)) {
-            productViewModel.productPagedList.observe(this, products -> flashsaleAdapter.submitList(products));
-            binding.included.content.listOfSale.setAdapter(flashsaleAdapter);
+            productViewModel.flashSalePagedList.observe(this, products -> flashSaleAdapter.submitList(products));
+            binding.included.content.listOfSale.setAdapter(flashSaleAdapter);
         } else {
             showOrHideViews(View.INVISIBLE);
             showSnackBar();
@@ -204,9 +206,9 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
 
     private void getLaptops() {
         if (isNetworkConnected(this)) {
-            productViewModel.laptopPagedList.observe(this, products -> flashsaleAdapter.submitList(products));
+            productViewModel.laptopPagedList.observe(this, products -> laptopAdapter.submitList(products));
 
-            binding.included.content.listOfLaptops.setAdapter(flashsaleAdapter);
+            binding.included.content.listOfLaptops.setAdapter(laptopAdapter);
         } else {
             showOrHideViews(View.INVISIBLE);
             showSnackBar();

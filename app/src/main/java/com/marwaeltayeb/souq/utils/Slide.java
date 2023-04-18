@@ -12,13 +12,13 @@ public class Slide {
     private static final List<Integer> slides = new ArrayList<>();
 
     static {
-        slides.add(R.drawable.slide1);
-        slides.add(R.drawable.slide2);
-        slides.add(R.drawable.slide3);
-        slides.add(R.drawable.slide4);
-        slides.add(R.drawable.slide5);
-        slides.add(R.drawable.slide6);
-        slides.add(R.drawable.slide7);
+        slides.add(R.drawable.s1);
+        slides.add(R.drawable.s2);
+        slides.add(R.drawable.s3);
+        slides.add(R.drawable.s4);
+        slides.add(R.drawable.s5);
+        slides.add(R.drawable.s6);
+        slides.add(R.drawable.s7);
     }
 
     public static List<Integer> getSlides() {

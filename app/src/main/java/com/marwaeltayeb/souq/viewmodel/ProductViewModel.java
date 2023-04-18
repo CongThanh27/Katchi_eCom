@@ -4,6 +4,8 @@ import static com.marwaeltayeb.souq.net.LaptopDataSourceFactory.laptopDataSource
 import static com.marwaeltayeb.souq.net.ProductDataSourceFactory.productDataSource;
 import static com.marwaeltayeb.souq.net.FlashSaleDataSourceFactory.flashSaleDataSource;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.paging.LivePagedListBuilder;
@@ -13,13 +15,14 @@ import com.marwaeltayeb.souq.model.Product;
 import com.marwaeltayeb.souq.net.FlashSaleDataSourceFactory;
 import com.marwaeltayeb.souq.net.LaptopDataSourceFactory;
 import com.marwaeltayeb.souq.net.ProductDataSource;
+import com.marwaeltayeb.souq.net.FlashSaleDataSource;
 import com.marwaeltayeb.souq.net.ProductDataSourceFactory;
 
 public class ProductViewModel extends ViewModel {
 
     // Create liveData for PagedList and PagedKeyedDataSource
     public LiveData<PagedList<Product>> productPagedList;
-    public LiveData<PagedList<Product>> flashsalePagedList;
+    public LiveData<PagedList<Product>> flashSalePagedList;
     public LiveData<PagedList<Product>> laptopPagedList;
 
     // Get PagedList configuration
@@ -28,36 +31,32 @@ public class ProductViewModel extends ViewModel {
                     .setEnablePlaceholders(false)
                     .setPageSize(ProductDataSource.PAGE_SIZE)
                     .build();
+    private static final PagedList.Config  pagedListConfig1 =
+            (new PagedList.Config.Builder())
+                    .setEnablePlaceholders(false)
+                    .setPageSize(FlashSaleDataSource.PAGE_SIZE)
+                    .build();
 
     public void loadMobiles(String category, int userId){
         // Get our database source factory
         ProductDataSourceFactory productDataSourceFactory = new ProductDataSourceFactory(category,userId);
-//tạo một đối tượng LivePagedListBuilder với đối số là productDataSourceFactory và pagedListConfig.
-// productDataSourceFactory là một đối tượng DataSource.Factory để cung cấp dữ liệu cho danh sách sản phẩm,
-// được khởi tạo từ ProductDataSourceFactory. pagedListConfig là một đối tượng PagedList.Config, được sử dụng
-// để cấu hình danh sách phân trang.
-        // Build the paged list
         productPagedList = (new LivePagedListBuilder<>(productDataSourceFactory, pagedListConfig)).build();
     }
-    public void loadFlashSale( int userId){
+    public void loadFlashSale(int userId) {
         // Get our database source factory
         FlashSaleDataSourceFactory flashSaleDataSourceFactory = new FlashSaleDataSourceFactory(userId);
-        // Build the paged list
-        flashsalePagedList = (new LivePagedListBuilder<>(flashSaleDataSourceFactory, pagedListConfig)).build();
+        flashSalePagedList = (new LivePagedListBuilder<>(flashSaleDataSourceFactory, pagedListConfig1)).build();
     }
-
     public void loadLaptops(String category, int userId){
         // Get our database source factory
         LaptopDataSourceFactory laptopDataSourceFactory = new LaptopDataSourceFactory(category,userId);
-
         // Build the paged list
         laptopPagedList = (new LivePagedListBuilder<>(laptopDataSourceFactory, pagedListConfig)).build();
     }
-
     public void invalidate(){
+        if(flashSaleDataSource!= null) flashSaleDataSource.invalidate();
         if(productDataSource != null) productDataSource.invalidate();
         if(laptopDataSource!= null) laptopDataSource.invalidate();
-        if(flashSaleDataSource!= null) flashSaleDataSource.invalidate();
     }
 }
 //Đoạn mã này tạo ra một lớp ProductViewModel trong gói com.marwaeltayeb.souq.viewmodel.
