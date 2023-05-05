@@ -17,6 +17,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
@@ -35,11 +37,13 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -49,8 +53,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.marwaeltayeb.souq.R;
@@ -81,7 +90,9 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
     private ProductAdapter laptopAdapter;
     private ProductAdapter historyAdapter;
     private ProductAdapter flashSaleAdapter;
+    private ProductAdapter favoriteAdapter;
 
+    private ProductAdapter soldAdapter;
     private ProductViewModel productViewModel;
     private HistoryViewModel historyViewModel;
     private UploadPhotoViewModel uploadPhotoViewModel;
@@ -92,7 +103,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
     private CircleImageView circleImageView;
 
     private NetworkChangeReceiver mNetworkReceiver;
-
+    Bundle bundle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,6 +116,9 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         productViewModel.loadFlashSale(userID);
         productViewModel.loadMobiles("Makeup", userID);
         productViewModel.loadLaptops("Skincare",userID);
+        productViewModel.loadFavorite(userID);
+        productViewModel.loadSold(userID);
+
 
 
         historyViewModel = ViewModelProviders.of(this).get(HistoryViewModel.class);
@@ -116,15 +130,24 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
 
         binding.included.content.txtSeeAllMobiles.setOnClickListener(this);
         binding.included.content.txtSeeAllLaptops.setOnClickListener(this);
+        binding.included.content.textSeeAllSales.setOnClickListener(this);
+        binding.included.content.textSeeAllFavorite.setOnClickListener(this);
+        binding.included.content.textSeeAllSold.setOnClickListener(this);
+        binding.included.content.imageView111.setOnClickListener(this);
+        binding.included.content.imageView6.setOnClickListener(this);
+        binding.included.content.imageView121.setOnClickListener(this);
+        binding.included.content.imageView7.setOnClickListener(this);
         binding.included.content.txtCash.setOnClickListener(this);
         binding.included.content.txtReturn.setOnClickListener(this);
         binding.included.txtSearch.setOnClickListener(this);
-
         setUpViews();
+
         getSales();
         getMobiles();
         getLaptops();
         getHistory();
+        getFavorite();
+        getSold();
         getUserImage();
 
         flipImages(Slide.getSlides());
@@ -170,10 +193,20 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         binding.included.content.listOfSale.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         binding.included.content.listOfSale.setItemAnimator(null);
 
+        binding.included.content.listOfFavorite.setHasFixedSize(true);
+        binding.included.content.listOfFavorite.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        binding.included.content.listOfFavorite.setItemAnimator(null);
+
+        binding.included.content.listOfSold.setHasFixedSize(true);
+        binding.included.content.listOfSold.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        binding.included.content.listOfSold.setItemAnimator(null);
+
         mobileAdapter = new ProductAdapter(this, this);
         flashSaleAdapter = new ProductAdapter(this, this);
         laptopAdapter = new ProductAdapter(this, this);
         historyAdapter = new ProductAdapter(this, this);
+        favoriteAdapter = new ProductAdapter(this, this);
+        soldAdapter = new ProductAdapter(this, this);
 
         if (FlagsManager.getInstance().isHistoryDeleted()) {
             binding.included.content.textViewHistory.setVisibility(View.GONE);
@@ -191,10 +224,28 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
             showSnackBar();
         }
     }
+    private void getSold() {
+        if (isNetworkConnected(this)) {
+            productViewModel.soldPagedList.observe(this, products -> soldAdapter.submitList(products));
+            binding.included.content.listOfSold.setAdapter(soldAdapter);
 
+        } else {
+            showOrHideViews(View.INVISIBLE);
+            showSnackBar();
+        }
+    }
+    private void getFavorite() {
+        if (isNetworkConnected(this)) {
+            productViewModel.favoritePagedList.observe(this, products -> favoriteAdapter.submitList(products));
+            binding.included.content.listOfFavorite.setAdapter(favoriteAdapter);
 
+        } else {
+            showOrHideViews(View.INVISIBLE);
+            showSnackBar();
+        }
+    }
     private void getSales() {
-        Toast.makeText(this, "getSales",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "getSales",Toast.LENGTH_SHORT).show();
         if (isNetworkConnected(this)) {
             productViewModel.flashSalePagedList.observe(this, products -> flashSaleAdapter.submitList(products));
             binding.included.content.listOfSale.setAdapter(flashSaleAdapter);
@@ -235,29 +286,72 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
     private void flipImages(List<Integer> images) {
         for (int image : images) {
             ImageView imageView = new ImageView(this);
-            imageView.setBackgroundResource(image);
+
+            Glide.with(this)
+                    .load(image)
+                    .transform(new RoundedCorners(30))
+                    .into(imageView);
+
             binding.included.content.imageSlider.addView(imageView);
         }
+
+
+        Glide.with(this)
+                .load(R.drawable.s8)
+                .transform(new RoundedCorners(20))
+                .into(binding.included.content.image1);
 
         binding.included.content.imageSlider.setFlipInterval(2000);
         binding.included.content.imageSlider.setAutoStart(true);
 
         // Set the animation for the view that enters the screen
         binding.included.content.imageSlider.setInAnimation(this, R.anim.slide_in_right);
-        // Set the animation for the view leaving th screen
+        // Set the animation for the view leaving the screen
         binding.included.content.imageSlider.setOutAnimation(this, R.anim.slide_out_left);
     }
+
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.txtSeeAllMobiles:
+            case R.id.imageView111:
                 Intent mobileIntent = new Intent(this, AllMobilesActivity.class);
+                bundle = new Bundle();
+                bundle.putString("AllList", "Makeup");
+                mobileIntent.putExtras(bundle);
                 startActivity(mobileIntent);
                 break;
             case R.id.txtSeeAllLaptops:
-                Intent laptopIntent = new Intent(this, AllLaptopsActivity.class);
+            case R.id.imageView121:
+                Intent laptopIntent = new Intent(this, AllMobilesActivity.class);
+                bundle = new Bundle();
+                bundle.putString("AllList", "Skincare");
+                laptopIntent.putExtras(bundle);
                 startActivity(laptopIntent);
+                break;
+            case R.id.textSeeAllSales:
+            case R.id.imageView6:
+                Intent salesIntent = new Intent(this, AllMobilesActivity.class);
+                bundle = new Bundle();
+                bundle.putString("AllList", "Sales");
+                salesIntent.putExtras(bundle);
+                startActivity(salesIntent);
+                break;
+            case R.id.textSeeAllFavorite:
+                Intent FavoriteIntent = new Intent(this, AllMobilesActivity.class);
+                bundle = new Bundle();
+                bundle.putString("AllList", "Favorite");
+                FavoriteIntent.putExtras(bundle);
+                startActivity(FavoriteIntent);
+                break;
+            case R.id.textSeeAllSold:
+            case R.id.imageView7:
+                Intent SoldIntent = new Intent(this, AllMobilesActivity.class);
+                bundle = new Bundle();
+                bundle.putString("AllList", "Sold");
+                SoldIntent.putExtras(bundle);
+                startActivity(SoldIntent);
                 break;
             case R.id.profile_image:
                 showCustomAlertDialog();

@@ -38,7 +38,7 @@ public class AllLaptopsActivity extends AppCompatActivity implements ProductAdap
         int userID = LoginUtils.getInstance(this).getUserInfo().getId();
 
         productViewModel = ViewModelProviders.of(this).get(ProductViewModel.class);
-        productViewModel.loadLaptops("laptop",userID);
+        productViewModel.loadLaptops("Skincare",userID);
 
         setupRecyclerViews();
 
@@ -48,7 +48,7 @@ public class AllLaptopsActivity extends AppCompatActivity implements ProductAdap
     private void setupRecyclerViews() {
         // Laptops
         binding.allLaptopsRecyclerView.setHasFixedSize(true);
-        binding.allLaptopsRecyclerView.setLayoutManager(new GridLayoutManager(this, (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) ? 2 : 4));
+        binding.allLaptopsRecyclerView.setLayoutManager(new GridLayoutManager(this, (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) ? 3 : 8));
         laptopAdapter = new ProductAdapter(this, this);
     }
 

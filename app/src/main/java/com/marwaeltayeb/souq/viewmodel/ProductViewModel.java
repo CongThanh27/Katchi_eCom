@@ -3,6 +3,8 @@ package com.marwaeltayeb.souq.viewmodel;
 import static com.marwaeltayeb.souq.net.LaptopDataSourceFactory.laptopDataSource;
 import static com.marwaeltayeb.souq.net.ProductDataSourceFactory.productDataSource;
 import static com.marwaeltayeb.souq.net.FlashSaleDataSourceFactory.flashSaleDataSource;
+import static com.marwaeltayeb.souq.net.FavoriteDataSourceFactory.favoriteDataSource;
+import static com.marwaeltayeb.souq.net.SoldDataSourceFactory.soldDataSource;
 
 import android.util.Log;
 
@@ -12,11 +14,13 @@ import androidx.paging.LivePagedListBuilder;
 import androidx.paging.PagedList;
 
 import com.marwaeltayeb.souq.model.Product;
+import com.marwaeltayeb.souq.net.FavoriteDataSourceFactory;
 import com.marwaeltayeb.souq.net.FlashSaleDataSourceFactory;
 import com.marwaeltayeb.souq.net.LaptopDataSourceFactory;
 import com.marwaeltayeb.souq.net.ProductDataSource;
 import com.marwaeltayeb.souq.net.FlashSaleDataSource;
 import com.marwaeltayeb.souq.net.ProductDataSourceFactory;
+import com.marwaeltayeb.souq.net.SoldDataSourceFactory;
 
 public class ProductViewModel extends ViewModel {
 
@@ -25,6 +29,8 @@ public class ProductViewModel extends ViewModel {
     public LiveData<PagedList<Product>> flashSalePagedList;
     public LiveData<PagedList<Product>> laptopPagedList;
 
+    public LiveData<PagedList<Product>> favoritePagedList;
+    public LiveData<PagedList<Product>> soldPagedList;
     // Get PagedList configuration
     private static final PagedList.Config  pagedListConfig =
             (new PagedList.Config.Builder())
@@ -42,6 +48,17 @@ public class ProductViewModel extends ViewModel {
         ProductDataSourceFactory productDataSourceFactory = new ProductDataSourceFactory(category,userId);
         productPagedList = (new LivePagedListBuilder<>(productDataSourceFactory, pagedListConfig)).build();
     }
+    public void loadFavorite( int userId){
+        // Get our database source factory
+        FavoriteDataSourceFactory favoriteDataSourceFactory = new FavoriteDataSourceFactory(userId);
+        favoritePagedList = (new LivePagedListBuilder<>(favoriteDataSourceFactory, pagedListConfig)).build();
+    }
+    public void loadSold( int userId){
+        // Get our database source factory
+        SoldDataSourceFactory soldDataSourceFactory = new SoldDataSourceFactory(userId);
+        soldPagedList = (new LivePagedListBuilder<>(soldDataSourceFactory, pagedListConfig)).build();
+    }
+
     public void loadFlashSale(int userId) {
         // Get our database source factory
         FlashSaleDataSourceFactory flashSaleDataSourceFactory = new FlashSaleDataSourceFactory(userId);
@@ -57,6 +74,8 @@ public class ProductViewModel extends ViewModel {
         if(flashSaleDataSource!= null) flashSaleDataSource.invalidate();
         if(productDataSource != null) productDataSource.invalidate();
         if(laptopDataSource!= null) laptopDataSource.invalidate();
+        if(favoriteDataSource!= null) favoriteDataSource.invalidate();
+        if(soldDataSource!= null) soldDataSource.invalidate();
     }
 }
 //Đoạn mã này tạo ra một lớp ProductViewModel trong gói com.marwaeltayeb.souq.viewmodel.

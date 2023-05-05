@@ -182,6 +182,8 @@
     <string name="years">years</string>
     <string name="_01">01</string>
     <string name="_2020">2020</string>
+    <string name="all_SP" translatable="false">All</string>
+    <string name="all_skincare" translatable="false">All Skincare</string>
 
     <string-array name="categories_array">
         <item>Mobile</item>
