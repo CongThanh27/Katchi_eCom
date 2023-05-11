@@ -18,16 +18,18 @@ import com.marwaeltayeb.souq.R;
 import com.marwaeltayeb.souq.adapter.CartAdapter;
 import com.marwaeltayeb.souq.databinding.ActivityCartBinding;
 import com.marwaeltayeb.souq.model.Product;
+import com.marwaeltayeb.souq.model.ProductInCart;
 import com.marwaeltayeb.souq.storage.LoginUtils;
 import com.marwaeltayeb.souq.viewmodel.CartViewModel;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class CartActivity extends AppCompatActivity {
 
     private ActivityCartBinding binding;
     private CartAdapter cartAdapter;
-    private List<Product> favoriteList;
+    private List<ProductInCart> favoriteList;
     private CartViewModel cartViewModel;
 
     @Override
@@ -60,17 +62,26 @@ public class CartActivity extends AppCompatActivity {
                         binding.emptyCart.setVisibility(View.VISIBLE);
                     } else {
                         binding.productsInCart.setVisibility(View.VISIBLE);
+                        binding.btntienhanhdathang.setVisibility(View.VISIBLE);
+                        binding.btntienhanhdathang.setOnClickListener(View -> {
+                            Intent intent = new Intent(CartActivity.this, CheckoutActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("cartList", (Serializable) favoriteList);
+                            intent.putExtras(bundle);
+                            startActivity(intent);
+                        });
                     }
                     cartAdapter = new CartAdapter(getApplicationContext(), favoriteList, product -> {
                         Intent intent = new Intent(CartActivity.this, DetailsActivity.class);
                         // Pass an object of product class
-                        intent.putExtra(PRODUCT, (product));
+                        //intent.putExtra(PRODUCT, (product));
                         startActivity(intent);
                     }, this);
                 }
 
                 binding.loadingIndicator.setVisibility(View.GONE);
                 binding.productsInCart.setAdapter(cartAdapter);
+
             });
         } else {
             binding.emptyCart.setVisibility(View.VISIBLE);

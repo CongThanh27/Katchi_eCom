@@ -7,8 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        card_view:cardCornerRadius="@dimen/dimen10dp"
-        card_view:cardElevation="@dimen/dimen5dp"
+        card_view:cardCornerRadius="5dp"
         card_view:cardUseCompatPadding="true"
         card_view:elevation="@dimen/dimen1dp">
 
@@ -48,18 +47,32 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"></LinearLayout>
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/txtProductPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen10dp"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/_5399_egp"
-                    android:textColor="#EC0013"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/txtProductPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen10dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/_5399_egp"
+                        android:textColor="#EC0013"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtSL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:text="x1"
+                        android:textColor="#0E0D0D"
+                        android:textSize="16sp"
+                        android:textStyle="normal" />
+
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/freeShipping"

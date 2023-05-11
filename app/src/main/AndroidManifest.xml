@@ -39,7 +39,14 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity android:name=".view.LoginActivity" />
-
+        <activity
+            android:name=".view.CheckoutActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".view.AllMobilesActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.AllMobilesActivity" />
+        </activity>
         <activity
             android:name=".view.SignUpActivity"
             android:theme="@style/NoActionBar" />

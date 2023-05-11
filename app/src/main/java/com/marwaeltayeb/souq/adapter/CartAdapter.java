@@ -19,6 +19,7 @@ import com.marwaeltayeb.souq.R;
 import com.marwaeltayeb.souq.databinding.CartListItemBinding;
 import com.marwaeltayeb.souq.model.Favorite;
 import com.marwaeltayeb.souq.model.Product;
+import com.marwaeltayeb.souq.model.ProductInCart;
 import com.marwaeltayeb.souq.storage.LoginUtils;
 import com.marwaeltayeb.souq.utils.RequestCallback;
 import com.marwaeltayeb.souq.viewmodel.AddFavoriteViewModel;
@@ -32,9 +33,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     private final Context mContext;
 
-    private final List<Product> productsInCart;
+    private final List<ProductInCart> productsInCart;
 
-    private Product currentProduct;
+    private ProductInCart currentProduct;
 
     private final AddFavoriteViewModel addFavoriteViewModel;
     private final RemoveFavoriteViewModel removeFavoriteViewModel;
@@ -46,10 +47,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
      * The interface that receives onClick messages.
      */
     public interface CartAdapterOnClickHandler {
-        void onClick(Product product);
+        void onClick(ProductInCart product);
     }
 
-    public CartAdapter(Context mContext, List<Product> productInCart, CartAdapter.CartAdapterOnClickHandler clickHandler, FragmentActivity activity) {
+    public CartAdapter(Context mContext, List<ProductInCart> productInCart, CartAdapter.CartAdapterOnClickHandler clickHandler, FragmentActivity activity) {
         this.mContext = mContext;
         this.productsInCart = productInCart;
         this.clickHandler = clickHandler;
@@ -72,8 +73,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
         DecimalFormat formatter = new DecimalFormat("#,###,###");
         String formattedPrice = formatter.format(currentProduct.getProductPrice());
-        holder.binding.txtProductPrice.setText(formattedPrice + " EGP");
-
+        holder.binding.txtProductPrice.setText(formattedPrice + " đ");
+        holder.binding.txtSL.setText("x"+currentProduct.getCartquantity());
         // Load the Product image into ImageView
         String imageUrl = LOCALHOST + currentProduct.getProductImage().replaceAll("\\\\", "/");
         Glide.with(mContext)

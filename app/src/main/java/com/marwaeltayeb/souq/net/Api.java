@@ -129,4 +129,17 @@ public interface Api {
     Call<ProductApiResponse> getProductsCart(@Query("userId") int userId,@Query("page") int page);
     @GET("products/favorite")
     Call<ProductApiResponse> getProductsFavorite(@Query("userId") int userId,@Query("page") int page);
+    @GET("users/thongtindathang")
+    Call<User> getUserInFo(@Query("id") int userId);
+    // Cập nhật user
+    @Multipart
+    @PUT("users/adupdate")
+    Call<Void> updateUser(@Part("id") RequestBody id,
+                          @Part("name") RequestBody name
+                          /*@Part("email") RequestBody email,
+                          @Part("password") RequestBody password,
+                          @Part("gender") RequestBody gender,
+                          @Part("age") RequestBody age,
+                          @Part MultipartBody.Part image,
+                          @Part("isAdmin") RequestBody isAdmin*/);
 }

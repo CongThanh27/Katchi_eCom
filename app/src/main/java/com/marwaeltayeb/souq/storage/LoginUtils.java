@@ -15,6 +15,8 @@ public class LoginUtils {
     private static final String PASSWORD = "password";
     private static final String TOKEN = "token";
     private static final String IS_ADMIN = "isAdmin";
+    private static final String AGE = "age";
+    private static final String GENDER = "gender";
 
     private static LoginUtils mInstance;
     private final Context mCtx;
@@ -39,7 +41,11 @@ public class LoginUtils {
         editor.putString(EMAIL, response.getEmail());
         editor.putString(PASSWORD, response.getPassword());
         editor.putString(TOKEN, response.getToken());
+        editor.putString("address", response.getAddress());
+        editor.putString("phone_number", response.getPhone_number());
         editor.putBoolean(IS_ADMIN, response.isAdmin());
+        editor.putString(AGE, response.getAge());
+        editor.putString(GENDER, response.getGender());
         editor.apply();
     }
 
@@ -56,6 +62,10 @@ public class LoginUtils {
         editor.putString(NAME, user.getName());
         editor.putString(EMAIL, user.getEmail());
         editor.putString(PASSWORD, user.getPassword());
+        editor.putString("address", user.getAddress());
+        editor.putString("phone_number", user.getPhone_number());
+        editor.putString(AGE, user.getAge());
+        editor.putString(GENDER, user.getGender());
         editor.putBoolean(IS_ADMIN, user.isAdmin());
         editor.apply();
     }
@@ -67,7 +77,12 @@ public class LoginUtils {
                 sharedPreferences.getString(NAME, null),
                 sharedPreferences.getString(EMAIL, null),
                 sharedPreferences.getString(PASSWORD, null),
-                sharedPreferences.getBoolean(IS_ADMIN, false)
+                sharedPreferences.getString(GENDER, null),
+                sharedPreferences.getBoolean(IS_ADMIN, false),
+                sharedPreferences.getString("address", null),
+                sharedPreferences.getString("phone_number", null),
+                sharedPreferences.getString(AGE, null)
+
         );
     }
 

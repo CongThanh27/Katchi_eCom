@@ -25,8 +25,8 @@ public class Product implements Parcelable {
     private String productCategory;
     @SerializedName("image")
     private String productImage;
-    @SerializedName("describe")
-    private String describe;
+    @SerializedName("description")
+    private String description;
     @SerializedName("trademark")
     private String trademark;
     @SerializedName("origin")
@@ -52,14 +52,14 @@ public class Product implements Parcelable {
     // Include child Parcelable objects
     private Product mInfo;
 
-    public Product(String productName, double productPrice, double priceold, int productQuantity, String productSupplier, String productCategory, String describe, String trademark, String origin, String sex, String skinproblems) {
+    public Product(String productName, double productPrice, double priceold, int productQuantity, String productSupplier, String productCategory, String description, String trademark, String origin, String sex, String skinproblems) {
         this.productName = productName;
         this.productPrice = productPrice;
         this.priceold = priceold;
         this.productQuantity = productQuantity;
         this.productSupplier = productSupplier;
         this.productCategory = productCategory;
-        this.describe = describe;
+        this.description = description;
         this.trademark = trademark;
         this.origin = origin;
         this.sex = sex;
@@ -101,7 +101,7 @@ public class Product implements Parcelable {
     }
 
     public String getDescribe() {
-        return describe;
+        return description;
     }
 
     public String getTrademark() {
@@ -163,7 +163,7 @@ public class Product implements Parcelable {
         out.writeString(productSupplier);
         out.writeString(productCategory);
         out.writeString(productImage);
-        out.writeString(describe);
+        out.writeString(description);
         out.writeString(trademark);
         out.writeString(origin);
         out.writeString(sex);
@@ -190,7 +190,7 @@ public class Product implements Parcelable {
         productSupplier = in.readString();
         productCategory = in.readString();
         productImage = in.readString();
-        describe= in.readString();
+        description= in.readString();
         trademark= in.readString();
         origin= in.readString();
         sex= in.readString();

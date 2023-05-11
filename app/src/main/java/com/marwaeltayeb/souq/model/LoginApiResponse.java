@@ -8,7 +8,11 @@ public class LoginApiResponse {
     private boolean error;
     private String message;
     private String password;
+    private String address;
+    private String phone_number;
     private String token;
+    private String age;
+    private String gender;
     private boolean isAdmin;
 
     public LoginApiResponse(String message) {
@@ -46,5 +50,29 @@ public class LoginApiResponse {
 
     public boolean isAdmin() {
         return isAdmin;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPhone_number() {
+        return phone_number;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

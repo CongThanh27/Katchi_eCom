@@ -8,6 +8,8 @@ import static com.marwaeltayeb.souq.utils.Constant.PRODUCT_ID;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.StrikethroughSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -30,6 +32,7 @@ import com.marwaeltayeb.souq.utils.RequestCallback;
 import com.marwaeltayeb.souq.viewmodel.ReviewViewModel;
 import com.marwaeltayeb.souq.viewmodel.ToCartViewModel;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class DetailsActivity extends AppCompatActivity implements View.OnClickListener {
@@ -84,7 +87,27 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         ((TextView) findViewById(R.id.action_bar_title)).setText(product.getProductName());
 
         binding.nameOfProduct.setText(product.getProductName());
-        binding.priceOfProduct.setText(String.valueOf(product.getProductPrice()));
+
+        //định dạng giá
+        DecimalFormat formatter = new DecimalFormat("#,###,###");
+        String formattedPrice = formatter.format(product.getProductPrice());
+        String formattedPriceOld = formatter.format(product.getPriceold());
+        binding.priceOfProduct.setText(formattedPrice+"đ");
+        SpannableString noidungspanned = new SpannableString(formattedPriceOld+"đ");
+        noidungspanned.setSpan(new StrikethroughSpan(), 0,(formattedPriceOld+"đ").length() , 0);
+        binding.priceOldOfProduct.setText(noidungspanned);
+        //giảm giá
+        int roundedNumber = (int) Math.round((100-((product.getProductPrice()*100)/product.getPriceold())));
+        binding.textView5.setText("-" + roundedNumber+"%");
+
+        binding.productdesc.setText(product.getDescribe());
+        //thông số
+        binding.thuonghieu.setText(product.getTrademark());
+        binding.textView14.setText(product.getOrigin());
+        binding.textView16.setText(product.getOrigin());
+        binding.textView18.setText(product.getSkinproblems());
+        binding.textView20.setText(product.getSex());
+        binding.textView22.setText(product.getSkinproblems());
 
         String imageUrl = LOCALHOST + product.getProductImage().replaceAll("\\\\", "/");
         Glide.with(this)
@@ -96,10 +119,16 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         reviewViewModel.getReviews(product.getProductId()).observe(this, reviewApiResponse -> {
             if (reviewApiResponse != null) {
                 reviewList = reviewApiResponse.getReviewList();
+                binding.danhgia.setText(reviewList.size()==0?"Chưa có đánh giá":reviewList.size()+"đánh giá");
+                double totalRating = 0.0;
+                for (Review review : reviewList) {
+                    totalRating += review.getReviewRate();
+                }
+                double averageRating = totalRating / reviewList.size();
+                binding.sumrate.setText(reviewList.size()==0?"0.0":String.valueOf(averageRating));
                 reviewAdapter = new ReviewAdapter(reviewList);
                 binding.listOfReviews.setAdapter(reviewAdapter);
             }
-
             if(reviewList.size() == 0){
                 binding.listOfReviews.setVisibility(View.GONE);
                 binding.txtFirst.setVisibility(View.VISIBLE);

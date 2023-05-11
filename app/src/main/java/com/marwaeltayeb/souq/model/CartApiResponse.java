@@ -7,9 +7,9 @@ import java.util.List;
 public class CartApiResponse {
 
     @SerializedName("carts")
-    private List<Product> carts;
+    private List<ProductInCart> carts;
 
-    public List<Product> getProductsInCart() {
+    public List<ProductInCart> getProductsInCart() {
         return carts;
     }
 }
