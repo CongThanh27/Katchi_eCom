@@ -12,6 +12,7 @@ import android.text.SpannableString;
 import android.text.style.StrikethroughSpan;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
@@ -45,21 +46,24 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     private ReviewAdapter reviewAdapter;
     private List<Review> reviewList;
     private Product product;
+    EditText quantityEditText;
 
+    int quantityInt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loadLocale(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_details);
-
         reviewViewModel = ViewModelProviders.of(this).get(ReviewViewModel.class);
         toCartViewModel = ViewModelProviders.of(this).get(ToCartViewModel.class);
-
         binding.txtSeeAllReviews.setOnClickListener(this);
         binding.writeReview.setOnClickListener(this);
         binding.addToCart.setOnClickListener(this);
         binding.buy.setOnClickListener(this);
-
+        quantityEditText = findViewById(R.id.quantityProductPage);
+        quantityEditText.setText(String.valueOf(1));
+        binding.decrementQuantity.setOnClickListener(this);
+        binding.incrementQuantity.setOnClickListener(this);
         getProductDetails();
 
         setUpRecycleView();
@@ -76,18 +80,14 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     private void getProductDetails() {
         // Receive the product object
         product = getIntent().getParcelableExtra(PRODUCT);
-
         Log.d(TAG,"isFavourite " + product.isFavourite() + " isInCart " + product.isInCart());
-
         // Set Custom ActionBar Layout
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setCustomView(R.layout.action_bar_title_layout);
         ((TextView) findViewById(R.id.action_bar_title)).setText(product.getProductName());
-
         binding.nameOfProduct.setText(product.getProductName());
-
         //định dạng giá
         DecimalFormat formatter = new DecimalFormat("#,###,###");
         String formattedPrice = formatter.format(product.getProductPrice());
@@ -108,7 +108,6 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         binding.textView18.setText(product.getSkinproblems());
         binding.textView20.setText(product.getSex());
         binding.textView22.setText(product.getSkinproblems());
-
         String imageUrl = LOCALHOST + product.getProductImage().replaceAll("\\\\", "/");
         Glide.with(this)
                 .load(imageUrl)
@@ -138,18 +137,35 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
     }
-
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.txtSeeAllReviews) {
             Intent allReviewIntent = new Intent(DetailsActivity.this, AllReviewsActivity.class);
             allReviewIntent.putExtra(PRODUCT_ID,product.getProductId());
             startActivity(allReviewIntent);
-        } else if (view.getId() == R.id.writeReview) {
+        }
+        else if (view.getId() == R.id.decrementQuantity) {
+            String quantity = quantityEditText.getText().toString();
+            //chuyển sang int
+            quantityInt = Integer.parseInt(quantity);
+            if (quantityInt > 1) {
+                quantityInt--;
+                quantityEditText.setText(String.valueOf(quantityInt));
+            }
+        } else if (view.getId() == R.id.incrementQuantity) {
+            String quantity = quantityEditText.getText().toString();
+            //chuyển sang int
+            quantityInt = Integer.parseInt(quantity);
+            quantityInt++;
+            quantityEditText.setText(String.valueOf(quantityInt));
+        }else if (view.getId() == R.id.writeReview) {
             Intent allReviewIntent = new Intent(DetailsActivity.this, WriteReviewActivity.class);
             allReviewIntent.putExtra(PRODUCT_ID,product.getProductId());
             startActivity(allReviewIntent);
         }else if(view.getId() == R.id.addToCart){
+            String quantity = quantityEditText.getText().toString();
+            //chuyển sang int
+            quantityInt = Integer.parseInt(quantity);
             insertToCart(() -> product.setIsInCart(true));
             Intent cartIntent = new Intent(DetailsActivity.this, CartActivity.class);
             startActivity(cartIntent);
@@ -158,10 +174,10 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
             shippingIntent.putExtra(PRODUCTID, product.getProductId());
             startActivity(shippingIntent);
         }
-    }
 
+    }
     private void insertToCart(RequestCallback callback) {
-        Cart cart = new Cart(LoginUtils.getInstance(this).getUserInfo().getId(), product.getProductId());
+        Cart cart = new Cart(LoginUtils.getInstance(this).getUserInfo().getId(), product.getProductId(),quantityInt);
         toCartViewModel.addToCart(cart, callback);
     }
 

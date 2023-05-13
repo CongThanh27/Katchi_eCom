@@ -4,6 +4,7 @@ import static com.marwaeltayeb.souq.utils.Constant.ORDER;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -15,8 +16,12 @@ import com.marwaeltayeb.souq.R;
 import com.marwaeltayeb.souq.adapter.OrderAdapter;
 import com.marwaeltayeb.souq.databinding.ActivityOrdersBinding;
 import com.marwaeltayeb.souq.model.Order;
+import com.marwaeltayeb.souq.model.ProductInOrder;
 import com.marwaeltayeb.souq.storage.LoginUtils;
 import com.marwaeltayeb.souq.viewmodel.OrderViewModel;
+
+import java.io.Serializable;
+import java.util.List;
 
 public class OrdersActivity extends AppCompatActivity implements OrderAdapter.OrderAdapterOnClickHandler {
 
@@ -54,9 +59,15 @@ public class OrdersActivity extends AppCompatActivity implements OrderAdapter.Or
     }
 
     @Override
-    public void onClick(Order order) {
+    public void onClick(Order order , List<ProductInOrder > productInOrder){
         Intent intent = new Intent(OrdersActivity.this, StatusActivity.class);
-        // Pass an object of order class
+        if (productInOrder == null) {
+            //Toast.makeText(this, "Nhấn lần nữa", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("listProductInOrder", (Serializable) productInOrder);
+        intent.putExtras(bundle);
         intent.putExtra(ORDER, (order));
         startActivity(intent);
     }

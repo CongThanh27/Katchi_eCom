@@ -1,12 +1,14 @@
 package com.marwaeltayeb.souq.repository;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.marwaeltayeb.souq.model.Review;
 import com.marwaeltayeb.souq.net.RetrofitClient;
+import com.marwaeltayeb.souq.view.WriteReviewActivity;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -29,6 +31,10 @@ public class WriteReviewRepository {
                 if (response.body() != null) {
                     mutableLiveData.setValue(responseBody);
                 }
+                else {
+                    mutableLiveData.setValue(null);
+                }
+
             }
 
             @Override

@@ -17,10 +17,10 @@ public class OtpRepository {
 
     private static final String TAG = OtpRepository.class.getSimpleName();
 
-    public LiveData<Otp> getOtpCode(String token , String email) {
+    public LiveData<Otp> getOtpCode(String email) {
         final MutableLiveData<Otp> mutableLiveData = new MutableLiveData<>();
 
-        RetrofitClient.getInstance().getApi().getOtp(token,email).enqueue(new Callback<Otp>() {
+        RetrofitClient.getInstance().getApi().getOtp(email).enqueue(new Callback<Otp>() {
             @Override
             public void onResponse(@NonNull Call<Otp> call, @NonNull Response<Otp> response) {
 

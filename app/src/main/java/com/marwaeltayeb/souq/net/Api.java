@@ -13,6 +13,7 @@ import com.marwaeltayeb.souq.model.OrderApiResponse;
 import com.marwaeltayeb.souq.model.Ordering;
 import com.marwaeltayeb.souq.model.Otp;
 import com.marwaeltayeb.souq.model.ProductApiResponse;
+import com.marwaeltayeb.souq.model.ProductInOnderRespone;
 import com.marwaeltayeb.souq.model.RegisterApiResponse;
 import com.marwaeltayeb.souq.model.Review;
 import com.marwaeltayeb.souq.model.ReviewApiResponse;
@@ -62,8 +63,7 @@ public interface Api {
     @GET("users/getImage")
     Call<Image> getUserImage(@Query("id") int userId);
 
-    @GET("users/otp")
-    Call<Otp> getOtp(@Header("authorization") String token, @Query("email") String email);
+
 
     @GET("products")
     Call<ProductApiResponse> getProductsByCategory(@Query("category") String category, @Query("userId") int userId,@Query("page") int page);
@@ -109,6 +109,8 @@ public interface Api {
 
     @GET("orders/get")
     Call<OrderApiResponse> getOrders(@Query("userId") int userId);
+    @GET("orders/getProducts")
+    Call<ProductInOnderRespone> getProInCart(@Query("userId") int userId, @Query("order_number") String ordernumber);
 
     @POST("address/add")
     Call<ResponseBody> addShippingAddress(@Body Shipping shipping);
@@ -142,4 +144,8 @@ public interface Api {
                           @Part("age") RequestBody age,
                           @Part MultipartBody.Part image,
                           @Part("isAdmin") RequestBody isAdmin*/);
+    @GET("users/otp")
+    Call<Otp> getOtp(@Query("email") String email);
+    @PUT("orders/huydonhang")
+    Call<ResponseBody> HuyDonHang(@Query("order_number") String order_number);
 }

@@ -6,6 +6,7 @@ import static com.marwaeltayeb.souq.utils.Constant.OTP;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -31,6 +32,7 @@ public class PasswordAssistantActivity extends AppCompatActivity implements View
         otpViewModel = ViewModelProviders.of(this).get(OtpViewModel.class);
 
         binding.proceed.setOnClickListener(this);
+
     }
 
     @Override
@@ -42,9 +44,9 @@ public class PasswordAssistantActivity extends AppCompatActivity implements View
 
     private void checkUserEmail() {
         String emailEntered = binding.emailAddress.getText().toString();
-        String token = LoginUtils.getInstance(this).getUserToken();
+        //String token = LoginUtils.getInstance(this).getUserToken();
 
-        otpViewModel.getOtpCode(token,emailEntered).observe(this, responseBody -> {
+        otpViewModel.getOtpCode(emailEntered).observe(this, responseBody -> {
             if (!responseBody.isError()) {
                 userEmail = responseBody.getEmail();
                 otpCode = responseBody.getOptCode();
@@ -54,6 +56,7 @@ public class PasswordAssistantActivity extends AppCompatActivity implements View
             }
         });
     }
+
 
     private void goToAuthenticationActivity() {
         Intent intent = new Intent(this, AuthenticationActivity.class);

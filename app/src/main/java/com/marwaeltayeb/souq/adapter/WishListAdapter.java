@@ -141,6 +141,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.WishLi
         }
 
         private void toggleProductsInCart() {
+
             // If Product is not added to cart
             if (currentProduct.isInCart()!=1) {
                 binding.imgCart.setImageResource(R.drawable.ic_shopping_cart_green);
@@ -168,7 +169,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.WishLi
         }
 
         private void insertToCart(RequestCallback callback) {
-            Cart cart = new Cart(LoginUtils.getInstance(mContext).getUserInfo().getId(), currentProduct.getProductId());
+            Cart cart = new Cart(LoginUtils.getInstance(mContext).getUserInfo().getId(), currentProduct.getProductId(), 1);
             toCartViewModel.addToCart(cart, callback);
         }
 

@@ -229,8 +229,8 @@ public class ProductAdapter extends PagedListAdapter<Product, ProductAdapter.Pro
             removeFavoriteViewModel.removeFavorite(LoginUtils.getInstance(mContext).getUserInfo().getId(), product.getProductId(),callback);
         }
 
-        private void insertToCart(RequestCallback callback) {
-            Cart cart = new Cart(LoginUtils.getInstance(mContext).getUserInfo().getId(), product.getProductId());
+        private void insertToCart(RequestCallback callback ) {
+            Cart cart = new Cart(LoginUtils.getInstance(mContext).getUserInfo().getId(), product.getProductId(), 1);
             toCartViewModel.addToCart(cart, callback);
         }
 

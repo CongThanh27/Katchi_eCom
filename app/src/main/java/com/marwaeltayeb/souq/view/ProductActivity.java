@@ -23,6 +23,7 @@ import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
@@ -50,6 +51,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
@@ -60,9 +62,12 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.marwaeltayeb.souq.R;
+import com.marwaeltayeb.souq.adapter.BrandAdapter;
 import com.marwaeltayeb.souq.adapter.ProductAdapter;
 import com.marwaeltayeb.souq.databinding.ActivityProductBinding;
 import com.marwaeltayeb.souq.model.Product;
@@ -76,6 +81,7 @@ import com.marwaeltayeb.souq.viewmodel.ProductViewModel;
 import com.marwaeltayeb.souq.viewmodel.UploadPhotoViewModel;
 import com.marwaeltayeb.souq.viewmodel.UserImageViewModel;
 
+import java.util.Calendar;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -97,6 +103,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
     private HistoryViewModel historyViewModel;
     private UploadPhotoViewModel uploadPhotoViewModel;
     private UserImageViewModel userImageViewModel;
+    private TextView txtGio, txtPhut, txtGiay;
 
     private Snackbar snack;
 
@@ -104,6 +111,23 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
 
     private NetworkChangeReceiver mNetworkReceiver;
     Bundle bundle;
+    private static final String[] mImageUrls = {
+            "https://bienquangcaohn.net/wp-content/uploads/2019/06/logo-thuong-hieu-my-pham-2-1.jpg",
+            "https://bienquangcaohn.net/wp-content/uploads/2019/06/logo-thuong-hieu-my-pham-1.jpg",
+            "https://bienquangcaohn.net/wp-content/uploads/2019/06/logo-thuong-hieu-my-pham-2.jpg",
+            "https://bienquangcaohn.net/wp-content/uploads/2019/06/logo-thuong-hieu-my-pham-5.jpg",
+            "https://bienquangcaohn.net/wp-content/uploads/2019/06/thiet-ke-logo-thuong-hieu-formylook.jpg",
+            "https://lambanner.com/wp-content/uploads/2022/11/MNT-DESIGN-LOGO-MY-PHAM-24.jpg",
+            "https://lambanner.com/wp-content/uploads/2022/11/MNT-DESIGN-LOGO-MY-PHAM-25.jpg",
+            "https://lambanner.com/wp-content/uploads/2022/11/MNT-DESIGN-LOGO-MY-PHAM-27.jpg",
+            "https://lambanner.com/wp-content/uploads/2022/11/MNT-DESIGN-LOGO-MY-PHAM-17.jpg",
+            "https://lambanner.com/wp-content/uploads/2022/11/MNT-DESIGN-LOGO-MY-PHAM-18.jpg",
+            "https://lambanner.com/wp-content/uploads/2022/11/MNT-DESIGN-LOGO-MY-PHAM-20.jpg",
+            "https://lambanner.com/wp-content/uploads/2022/11/MNT-DESIGN-LOGO-MY-PHAM-22.jpg",
+            "https://lambanner.com/wp-content/uploads/2022/11/MNT-DESIGN-LOGO-MY-PHAM-26.jpg",
+            "https://lambanner.com/wp-content/uploads/2022/11/MNT-DESIGN-LOGO-MY-PHAM-21.jpg",
+            "https://ttagencyads.com/wp-content/uploads/2021/05/10-logo-thuong-hieu-my-pham-noi-tieng-1.jpg"
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -140,6 +164,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         binding.included.content.txtCash.setOnClickListener(this);
         binding.included.content.txtReturn.setOnClickListener(this);
         binding.included.txtSearch.setOnClickListener(this);
+        binding.included.content.imageView101.setOnClickListener(this);
         setUpViews();
 
         getSales();
@@ -151,6 +176,11 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         getUserImage();
 
         flipImages(Slide.getSlides());
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(new BrandAdapter(mImageUrls));
 
         mNetworkReceiver = new NetworkChangeReceiver();
         mNetworkReceiver.setOnNetworkListener(this);
@@ -366,6 +396,13 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
                 Intent searchIntent = new Intent(ProductActivity.this, SearchActivity.class);
                 startActivity(searchIntent);
                 break;
+            case R.id.imageView101:
+                Intent newIntent = new Intent(this, DealsActivity.class);
+                bundle = new Bundle();
+                bundle.putString("New", "New");
+                newIntent.putExtras(bundle);
+                startActivity(newIntent);
+                break;
             default: // Should not get here
         }
     }
@@ -519,6 +556,45 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
     protected void onStart() {
         super.onStart();
         registerNetworkBroadcastForNougat();
+        txtGio = (TextView) findViewById(R.id.txtGio);
+        txtPhut = (TextView) findViewById(R.id.txtPhut);
+        txtGiay = (TextView) findViewById(R.id.txtGiay);
+
+        long now = System.currentTimeMillis();
+        long midnight = getMidnight(now);
+        CountDownTimer timer = new CountDownTimer(midnight - now, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                int hours = (int) (millisUntilFinished / (60 * 60 * 1000));
+                int minutes = (int) ((millisUntilFinished / (60 * 1000)) % 60);
+                int seconds = (int) ((millisUntilFinished / 1000) % 60);
+                String timeGio = String.format("%02d", hours);
+                String timePhut = String.format("%02d", minutes);
+                String timeGiay = String.format("%02d", seconds);
+
+                txtGio.setText(timeGio);
+                txtPhut.setText(timePhut);
+                txtGiay.setText(timeGiay);
+            }
+
+            @Override
+            public void onFinish() {
+                txtGio.setText("00");
+                txtPhut.setText("00");
+                txtGiay.setText("00");
+            }
+        };
+        timer.start();
+    }
+
+    private long getMidnight(long time) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(time);
+        calendar.set(Calendar.HOUR_OF_DAY, 24);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return calendar.getTimeInMillis();
     }
 
     @Override
@@ -569,6 +645,10 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
                 Intent cartIntent = new Intent(this, CartActivity.class);
                 startActivity(cartIntent);
                 return true;
+            case R.id.action_qr:
+                Intent qrIntent = new Intent(this, QrCodeActivity.class);
+                startActivity(qrIntent);
+                return true;
             case R.id.action_addProduct:
                 Intent addProductIntent = new Intent(this, AddProductActivity.class);
                 startActivity(addProductIntent);
@@ -611,12 +691,120 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
             Intent wishListIntent = new Intent(this, WishListActivity.class);
             startActivity(wishListIntent);
         }
+        else if (id == R.id.app_tour) {
+            Intent tourIntent = new Intent(this, WelcomeActivity.class);
+            startActivity(tourIntent);
+        } else if (id == R.id.explore) {
+            tapview();
+        }
+        else if (id == R.id.logout) {
+            signOut();
+            return true;
+        }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    private void signOut() {
+        LoginUtils.getInstance(this).clearAll();
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+    private void tapview() {
 
+        new TapTargetSequence(this)
+                .targets(
+                        TapTarget.forView(findViewById(R.id.action_qr), "Qr Code", "Bạn có thể check giá của sản phẩm nhanh hơn ở đây nhé !")
+                                .targetCircleColor(R.color.white)
+                                .titleTextColor(R.color.white)
+                                .titleTextSize(25)
+                                .descriptionTextSize(15)
+                                .descriptionTextColor(R.color.blue)
+                                .drawShadow(true)                   // Whether to draw a drop shadow or not
+                                .cancelable(false)                  // Whether tapping outside the outer circle dismisses the view
+                                .tintTarget(true)
+                                .transparentTarget(true)
+                                .outerCircleColor(R.color.centerColor),
+                        TapTarget.forView(findViewById(R.id.action_cart), "Giỏ hàng", "Nơi chứa đựng các sản phẩm mà bạn muốn mua !")
+                                .targetCircleColor(R.color.white)
+                                .titleTextColor(R.color.white)
+                                .titleTextSize(25)
+                                .descriptionTextSize(15)
+                                .descriptionTextColor(R.color.orange)
+                                .drawShadow(true)                   // Whether to draw a drop shadow or not
+                                .cancelable(false)                  // Whether tapping outside the outer circle dismisses the view
+                                .tintTarget(true)
+                                .transparentTarget(true)
+                                .outerCircleColor(R.color.centerColor),
+                        TapTarget.forView(findViewById(R.id.imageView5), "Danh mục", "Chứa danh mục sác lại sản phẩm !")
+                                .targetCircleColor(R.color.white)
+                                .titleTextColor(R.color.white)
+                                .titleTextSize(25)
+                                .descriptionTextSize(15)
+                                .descriptionTextColor(R.color.orange)
+                                .drawShadow(true)                   // Whether to draw a drop shadow or not
+                                .cancelable(false)                  // Whether tapping outside the outer circle dismisses the view
+                                .tintTarget(true)
+                                .transparentTarget(true)
+                                .outerCircleColor(R.color.centerColor),
+                        TapTarget.forView(findViewById(R.id.imageView6), "Deals", "Nơi chứa những mã giảm giá mới nhất !")
+                                .targetCircleColor(R.color.white)
+                                .titleTextColor(R.color.white)
+                                .titleTextSize(25)
+                                .descriptionTextSize(15)
+                                .descriptionTextColor(R.color.white)
+                                .drawShadow(true)                   // Whether to draw a drop shadow or not
+                                .cancelable(false)                  // Whether tapping outside the outer circle dismisses the view
+                                .tintTarget(true)
+                                .transparentTarget(true)
+                                .outerCircleColor(R.color.colorAccent),
+                        TapTarget.forView(findViewById(R.id.imageView7), "Bán chạy", "Danh sách những sản phẩm bán chạy !")
+                                .targetCircleColor(R.color.dark)
+                                .titleTextColor(R.color.dark)
+                                .titleTextSize(25)
+                                .descriptionTextSize(15)
+                                .descriptionTextColor(R.color.dark)
+                                .drawShadow(true)
+                                .cancelable(false)// Whether tapping outside the outer circle dismisses the view
+                                .tintTarget(true)
+                                .transparentTarget(true)
+                                .outerCircleColor(R.color.white),
+                        TapTarget.forView(findViewById(R.id.imageView8), "Yêu thích", "Danh sách các sản phẩm yêu thích !")
+                                .targetCircleColor(R.color.colorAccent)
+                                .titleTextColor(R.color.colorAccent)
+                                .titleTextSize(25)
+                                .descriptionTextSize(15)
+                                .descriptionTextColor(R.color.orange)
+                                .descriptionTextColor(R.color.orange)
+                                .drawShadow(true)
+                                .cancelable(false)// Whether tapping outside the outer circle dismisses the view
+                                .tintTarget(true)
+                                .transparentTarget(true)
+                                .outerCircleColor(R.color.dark))
+                .listener(new TapTargetSequence.Listener() {
+                    // This listener will tell us when interesting(tm) events happen in regards
+                    // to the sequence
+                    @Override
+                    public void onSequenceFinish() {
+                        //session.setFirstTime(false);
+                        //Toasty.success(ProductActivity.this, " You are ready to go !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProductActivity.this,"Bắt đầu mua hàng thôi nào !",Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
+
+                    }
+
+                    @Override
+                    public void onSequenceCanceled(TapTarget lastTarget) {
+                        // Boo
+                    }
+                }).start();
+
+    }
     private void goToCategoryActivity(String category) {
         Intent categoryIntent = new Intent(this, CategoryActivity.class);
         categoryIntent.putExtra(CATEGORY, category);

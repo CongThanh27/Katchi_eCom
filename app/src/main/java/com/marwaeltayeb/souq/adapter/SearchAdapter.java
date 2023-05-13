@@ -216,7 +216,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         }
 
         private void insertToCart(RequestCallback callback) {
-            Cart cart = new Cart(LoginUtils.getInstance(mContext).getUserInfo().getId(), currentProduct.getProductId());
+            Cart cart = new Cart(LoginUtils.getInstance(mContext).getUserInfo().getId(), currentProduct.getProductId(),1);
             toCartViewModel.addToCart(cart, callback);
         }
 

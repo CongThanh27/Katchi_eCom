@@ -80,6 +80,10 @@ public class WriteReviewActivity extends AppCompatActivity implements View.OnCli
                     e.printStackTrace();
                 }
             }
+            else {
+                Toast.makeText(this, "Bạn chỉ được đánh giá một lần!", Toast.LENGTH_SHORT).show();
+            }
+
         });
     }
 

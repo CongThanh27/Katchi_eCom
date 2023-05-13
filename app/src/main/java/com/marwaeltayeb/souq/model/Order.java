@@ -24,9 +24,19 @@ public class Order implements Serializable {
     private String shippingAddress;
     @SerializedName("phone")
     private String shippingPhone;
+    @SerializedName("quantity")
+    private int quantity;
 
     public int getProductId() {
         return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    public void setOrderDateStatus(String orderDateStatus) {
+        this.orderDateStatus = orderDateStatus;
     }
 
     public double getProductPrice() {
@@ -60,4 +70,9 @@ public class Order implements Serializable {
     public String getShippingPhone() {
         return shippingPhone;
     }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
 }

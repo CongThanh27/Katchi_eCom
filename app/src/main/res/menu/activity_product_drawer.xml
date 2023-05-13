@@ -4,48 +4,63 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single"
-           android:id="@+id/group1">
+        android:id="@+id/group1">
         <item
             android:id="@+id/nav_mobiles"
             android:icon="@drawable/ic_mobile"
-            android:title="@string/mobiles" />
+            android:title="Makeup" />
         <item
             android:id="@+id/nav_laptops"
             android:icon="@drawable/ic_laptop"
-            android:title="@string/laptops" />
+            android:title="Skincare" />
 
         <item
             android:id="@+id/nav_babies"
             android:icon="@drawable/ic_baby"
-            android:title="@string/babies" />
+            android:title="Danh mục" />
 
         <item
             android:id="@+id/nav_toys"
             android:icon="@drawable/ic_toy"
-            android:title="@string/toys" />
+            android:title="Deals" />
     </group>
 
     <group android:checkableBehavior="single"
-           android:id="@+id/group2">
-            <item
-                android:id="@+id/nav_trackOrder"
-                android:icon="@drawable/ic_tracking"
-                android:title="@string/track_orders" />
+        android:id="@+id/group2">
+        <item
 
-            <item
-                android:id="@+id/nav_myAccount"
-                android:icon="@drawable/ic_account"
-                android:title="@string/my_account" />
+            android:id="@+id/nav_trackOrder"
+            android:icon="@drawable/ic_tracking"
+            android:title="@string/track_orders" />
 
-            <item
-                android:id="@+id/nav_newsFeed"
-                android:icon="@drawable/ic_newsfeed"
-                android:title="@string/news_feed" />
+        <item
+            android:id="@+id/nav_myAccount"
+            android:icon="@drawable/ic_account"
+            android:title="@string/my_account" />
 
-            <item
-                android:id="@+id/nav_wishList"
-                android:icon="@drawable/ic_favorite_border"
-                android:title="@string/my_wishList" />
+        <item
+            android:id="@+id/nav_newsFeed"
+            android:icon="@drawable/ic_newsfeed"
+            android:title="@string/news_feed" />
+
+        <item
+            android:id="@+id/nav_wishList"
+            android:icon="@drawable/ic_favorite_border"
+            android:title="@string/my_wishList" />
+
+        <item
+            android:id="@+id/app_tour"
+            android:icon="@drawable/tour"
+            android:title="App Tour" />
+
+        <item
+            android:id="@+id/explore"
+            android:icon="@drawable/ic_explore"
+            android:title="Explore" />
+
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/logout"
+            android:title="Sign Out" />
     </group>
 </menu>
-

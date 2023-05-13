@@ -9,6 +9,7 @@ import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -46,6 +47,9 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
 
         TextView authentication = findViewById(R.id.authentication);
         authentication.setText(formatted);
+
+        Toast.makeText(this, correctOtpCode, Toast.LENGTH_LONG).show();
+
     }
 
     @Override
@@ -63,7 +67,7 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
     }
 
     private void getAnotherOtpCode() {
-        otpViewModel.getOtpCode(LoginUtils.getInstance(this).getUserToken(), email).observe(this, responseBody -> {
+        otpViewModel.getOtpCode(email).observe(this, responseBody -> {
             if (!responseBody.isError()) {
                 correctOtpCode = responseBody.getOptCode();
                 binding.reSend.setEnabled(false);

@@ -10,10 +10,10 @@ public class Cart {
     private int productId;
     @SerializedName("quantity")
     private int quantity;
-    public Cart(int userId, int productId) {
+    public Cart(int userId, int productId, int quantity) {
         this.userId = userId;
         this.productId = productId;
-       // this.quantity = quantity;
+        this.quantity = quantity;
     }
 
     public int getQuantity() {
