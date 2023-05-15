@@ -27,7 +27,7 @@
             <ViewFlipper
                 android:id="@+id/viewFlipper1"
                 android:layout_width="wrap_content"
-                android:layout_height="120dp"
+                android:layout_height="145dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/slidedeal3"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +83,7 @@
                             android:textSize="16sp"
                             android:textStyle="bold"
                             android:layout_margin="8dp"
-                            android:text="HOÀN 50% FPOINT TỐI ĐA 30K"/>
+                            android:text="HOÀN 20% FPOINT TỐI ĐA 20K"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -143,9 +143,10 @@
                             android:textStyle="bold"
                             android:layout_gravity="center"
                             android:layout_margin="8dp"
-                            android:text="HKWGCMS9"/>
+                            android:text="HSYN67HG"/>
 
                         <TextView
+                            android:id="@+id/txtLayMaNgay1"
                             android:layout_width="140dp"
                             android:layout_height="30dp"
                             android:textColor="#fff"
@@ -158,6 +159,7 @@
                             android:text="LẤY MÃ NGAY"/>
 
                         <TextView
+                            android:id="@+id/txtChiTietTheLe"
                             android:layout_width="140dp"
                             android:layout_height="30dp"
                             android:textColor="#F79F5D"
@@ -195,7 +197,7 @@
                             android:textSize="16sp"
                             android:textStyle="bold"
                             android:layout_margin="8dp"
-                            android:text="HOÀN 50% FPOINT TỐI ĐA 30K"/>
+                            android:text="HOÀN 40% FPOINT TỐI ĐA 40K"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -203,7 +205,7 @@
                             android:textColor="@color/black"
                             android:textSize="12sp"
                             android:layout_margin="8dp"
-                            android:text="ĐƠN HÀNG TỪ 50K"/>
+                            android:text="ĐƠN HÀNG TỪ 90K"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -255,9 +257,10 @@
                             android:textStyle="bold"
                             android:layout_gravity="center"
                             android:layout_margin="8dp"
-                            android:text="HKWGCMS9"/>
+                            android:text="OIUO90KS"/>
 
                         <TextView
+                            android:id="@+id/txtLayMaNgay2"
                             android:layout_width="140dp"
                             android:layout_height="30dp"
                             android:textColor="#fff"
@@ -270,6 +273,7 @@
                             android:text="LẤY MÃ NGAY"/>
 
                         <TextView
+                            android:id="@+id/txtChiTietTheLe1"
                             android:layout_width="140dp"
                             android:layout_height="30dp"
                             android:textColor="#F79F5D"
@@ -307,7 +311,7 @@
                             android:textSize="16sp"
                             android:textStyle="bold"
                             android:layout_margin="8dp"
-                            android:text="HOÀN 50% FPOINT TỐI ĐA 30K"/>
+                            android:text="HOÀN 100% FPOINT TỐI ĐA 10K"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -315,7 +319,7 @@
                             android:textColor="@color/black"
                             android:textSize="12sp"
                             android:layout_margin="8dp"
-                            android:text="ĐƠN HÀNG TỪ 50K"/>
+                            android:text="ĐƠN HÀNG TỪ 20K"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -370,6 +374,7 @@
                             android:text="HKWGCMS9"/>
 
                         <TextView
+                            android:id="@+id/txtLayMaNgay3"
                             android:layout_width="140dp"
                             android:layout_height="30dp"
                             android:textColor="#fff"
@@ -382,6 +387,7 @@
                             android:text="LẤY MÃ NGAY"/>
 
                         <TextView
+                            android:id="@+id/txtChiTietTheLe2"
                             android:layout_width="140dp"
                             android:layout_height="30dp"
                             android:textColor="#F79F5D"
@@ -404,7 +410,7 @@
             <ImageView
                 android:id="@+id/imageView3"
                 android:layout_width="wrap_content"
-                android:layout_height="55dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/coupon2"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -510,9 +516,10 @@
                             android:textStyle="bold"
                             android:layout_gravity="center"
                             android:layout_margin="8dp"
-                            android:text="HKWGCMS9"/>
+                            android:text="CHIHIAMMS9"/>
 
                         <TextView
+                            android:id="@+id/txtLayMaNgay4"
                             android:layout_width="140dp"
                             android:layout_height="30dp"
                             android:textColor="#fff"
@@ -525,6 +532,7 @@
                             android:text="LẤY MÃ NGAY"/>
 
                         <TextView
+                            android:id="@+id/txtChiTietTheLe3"
                             android:layout_width="140dp"
                             android:layout_height="30dp"
                             android:textColor="#F79F5D"
@@ -562,7 +570,7 @@
                             android:textSize="16sp"
                             android:textStyle="bold"
                             android:layout_margin="8dp"
-                            android:text="HOÀN 50% FPOINT TỐI ĐA 30K"/>
+                            android:text="MÃ GIẢM 20k"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -570,7 +578,7 @@
                             android:textColor="@color/black"
                             android:textSize="12sp"
                             android:layout_margin="8dp"
-                            android:text="ĐƠN HÀNG TỪ 50K"/>
+                            android:text="Đơn hàng từ 160K (TOÀN SÀN)"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -578,7 +586,7 @@
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:layout_margin="8dp"
-                            android:text="NHẬP MÃ NGAY"/>
+                            android:text="MUA NGAY"/>
 
                         <TextView
                             android:layout_width="140dp"
@@ -622,9 +630,10 @@
                             android:textStyle="bold"
                             android:layout_gravity="center"
                             android:layout_margin="8dp"
-                            android:text="HKWGCMS9"/>
+                            android:text="THANHCMS3"/>
 
                         <TextView
+                            android:id="@+id/txtLayMaNgay5"
                             android:layout_width="140dp"
                             android:layout_height="30dp"
                             android:textColor="#fff"
@@ -637,6 +646,7 @@
                             android:text="LẤY MÃ NGAY"/>
 
                         <TextView
+                            android:id="@+id/txtChiTietTheLe4"
                             android:layout_width="140dp"
                             android:layout_height="30dp"
                             android:textColor="#F79F5D"
@@ -674,7 +684,7 @@
                             android:textSize="16sp"
                             android:textStyle="bold"
                             android:layout_margin="8dp"
-                            android:text="HOÀN 50% FPOINT TỐI ĐA 30K"/>
+                            android:text="MÃ GIẢM 30K"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -682,7 +692,7 @@
                             android:textColor="@color/black"
                             android:textSize="12sp"
                             android:layout_margin="8dp"
-                            android:text="ĐƠN HÀNG TỪ 50K"/>
+                            android:text="Đơn hàng từ 170K (TOÀN SÀN)"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -690,7 +700,7 @@
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:layout_margin="8dp"
-                            android:text="NHẬP MÃ NGAY"/>
+                            android:text="MUA NGAY"/>
 
                         <TextView
                             android:layout_width="140dp"
@@ -734,9 +744,10 @@
                             android:textStyle="bold"
                             android:layout_gravity="center"
                             android:layout_margin="8dp"
-                            android:text="HKWGCMS9"/>
+                            android:text="HKWGCKHANG2"/>
 
                         <TextView
+                            android:id="@+id/txtLayMaNgay6"
                             android:layout_width="140dp"
                             android:layout_height="30dp"
                             android:textColor="#fff"
@@ -749,6 +760,7 @@
                             android:text="LẤY MÃ NGAY"/>
 
                         <TextView
+                            android:id="@+id/txtChiTietTheLe5"
                             android:layout_width="140dp"
                             android:layout_height="30dp"
                             android:textColor="#F79F5D"
@@ -780,15 +792,40 @@
                 tools:ignore="MissingConstraints"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                android:id="@+id/recyclerViewDeal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+            <ImageView
+                android:id="@+id/imageViewUuDaiDoiTac"
+                android:layout_width="wrap_content"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/uudaitudoitac"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerViewDeal"
+                tools:ignore="MissingConstraints"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewDoiTac"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewUuDaiDoiTac" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -12,6 +12,7 @@ import android.text.SpannableString;
 import android.text.style.StrikethroughSpan;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -48,6 +49,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     private Product product;
     EditText quantityEditText;
 
+
     int quantityInt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,8 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         quantityEditText.setText(String.valueOf(1));
         binding.decrementQuantity.setOnClickListener(this);
         binding.incrementQuantity.setOnClickListener(this);
+        binding.button2.setOnClickListener(this);
+        binding.button11.setOnClickListener(this);
         getProductDetails();
 
         setUpRecycleView();
@@ -174,8 +178,18 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
             shippingIntent.putExtra(PRODUCTID, product.getProductId());
             startActivity(shippingIntent);
         }
-
+    else if(view.getId() == R.id.button2){
+        Intent shippingIntent = new Intent(DetailsActivity.this, ThanhPhanActivity.class);
+        startActivity(shippingIntent);
     }
+    else if(view.getId() == R.id.button11) {
+            Intent shippingIntent = new Intent(DetailsActivity.this, HuongDanSuDungActivity.class);
+            startActivity(shippingIntent);
+
+        }
+
+
+}
     private void insertToCart(RequestCallback callback) {
         Cart cart = new Cart(LoginUtils.getInstance(this).getUserInfo().getId(), product.getProductId(),quantityInt);
         toCartViewModel.addToCart(cart, callback);

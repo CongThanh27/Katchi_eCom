@@ -2,6 +2,7 @@ package com.marwaeltayeb.souq.net;
 
 import com.marwaeltayeb.souq.model.Cart;
 import com.marwaeltayeb.souq.model.CartApiResponse;
+import com.marwaeltayeb.souq.model.DiaChiApiResponse;
 import com.marwaeltayeb.souq.model.Favorite;
 import com.marwaeltayeb.souq.model.FavoriteApiResponse;
 import com.marwaeltayeb.souq.model.History;
@@ -109,6 +110,8 @@ public interface Api {
 
     @GET("orders/get")
     Call<OrderApiResponse> getOrders(@Query("userId") int userId);
+    @GET("address/getShippingInfo")
+    Call<DiaChiApiResponse> getDiaChi(@Query("userId") int userId);
     @GET("orders/getProducts")
     Call<ProductInOnderRespone> getProInCart(@Query("userId") int userId, @Query("order_number") String ordernumber);
 
@@ -148,4 +151,6 @@ public interface Api {
     Call<Otp> getOtp(@Query("email") String email);
     @PUT("orders/huydonhang")
     Call<ResponseBody> HuyDonHang(@Query("order_number") String order_number);
+    @PUT("users/capnhatdiachi")
+    Call<ResponseBody> UpdateInfoUser(@Query("id") int id,@Query("phone_number") String phone_number,@Query("address") String address);
 }

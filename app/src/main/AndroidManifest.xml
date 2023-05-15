@@ -19,8 +19,30 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
-
+        <activity
+            android:name=".view.ThanhPhanActivity"
+            android:label="Thành phần"
+            android:parentActivityName=".view.DetailsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.DetailsActivity" />
+        </activity>
+        <activity
+            android:name=".view.HuongDanSuDungActivity"
+            android:label="Hướng dẫn sử dụng"
+            android:parentActivityName=".view.DetailsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.DetailsActivity" />
+        </activity>
+        <activity
+            android:name=".view.DealRuleActivity"
+            android:label="Chi Tiết Thể Lệ"
+            android:parentActivityName=".view.DealsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.DealsActivity" />
+        </activity>
         <activity
             android:name=".view.SplashActivity"
             android:exported="true"
@@ -50,11 +72,12 @@
         </activity>
         <activity
             android:name=".view.OrderPlacedActivity"
+            android:label="Finish"
             android:launchMode="singleTop"
-            android:parentActivityName=".view.AllMobilesActivity">
+            android:parentActivityName=".view.ProductActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".view.AllMobilesActivity" />
+                android:value=".view.ProductActivity" />
         </activity>
         <activity
             android:name=".view.SignUpActivity"
@@ -241,7 +264,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".view.ProductActivity" />
         </activity>
+
         <receiver android:name=".receiver.NetworkChangeReceiver" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
     </application>
 
 </manifest>

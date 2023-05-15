@@ -29,6 +29,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     private List<ProductInOrder> proList;
     private ProductInOrderViewModel productInOrderViewModel;
     private Order currentOrder;
+    private double totalPrice = 0.0;
 
     private final OrderAdapter.OrderAdapterOnClickHandler clickHandler;
 
@@ -53,18 +54,19 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
+
         currentOrder = orderList.get(position);
         String ordernumber =  currentOrder.getOrderNumber();
         holder.binding.noOfItems.setText("0 sản phẩm");
         productInOrderViewModel = ViewModelProviders.of((FragmentActivity) holder.itemView.getContext()).get(ProductInOrderViewModel.class);
         productInOrderViewModel.getProductsInOrder(LoginUtils.getInstance(holder.itemView.getContext()).getUserInfo().getId(), ordernumber).observe((FragmentActivity) holder.itemView.getContext(), productInOrderApiResponse -> {
-
             if (productInOrderApiResponse != null) {
                 if(productInOrderApiResponse.getProductListInOrderList().size() > 0){
 
                     holder.binding.noOfItems.setText(productInOrderApiResponse.getProductListInOrderList().size()+" sản phẩm");
                     //vòng for qua các sản phẩm trong đơn hàng
                     for(int i = 0; i < productInOrderApiResponse.getProductListInOrderList().size(); i++){
+                        totalPrice += productInOrderApiResponse.getProductListInOrderList().get(i).getProductPrice()*productInOrderApiResponse.getProductListInOrderList().get(i).getQuantity();
                         String img = "img" + (i+1);
                         ProductInOrder productInOrder = productInOrderApiResponse.getProductListInOrderList().get(i);
                         String imageUrl = LOCALHOST + productInOrder.getImage().replaceAll("\\\\", "/");
@@ -94,13 +96,16 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
                         }
 
                     }
+                    DecimalFormat formatter = new DecimalFormat("#,###,###");
+                    String formattedPrice = formatter.format(totalPrice);
+                    holder.binding.productPrice.setText(formattedPrice + " đ ");
+                    totalPrice = 0.0;
+
                 }
 //
             }
         });
-        DecimalFormat formatter = new DecimalFormat("#,###,###");
-        String formattedPrice = formatter.format(currentOrder.getProductPrice());
-        holder.binding.productPrice.setText(formattedPrice + " đ ");
+
         holder.binding.orderNumber.setText("Mã vận đơn: "+currentOrder.getOrderNumber());
         holder.binding.orderDate.setText("Ngày: "+currentOrder.getOrderDate());
     }

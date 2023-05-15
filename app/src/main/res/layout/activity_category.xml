@@ -33,9 +33,10 @@
             android:id="@+id/categoryList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="5dp"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
-            android:background="@color/lightGray"
+            android:background="@drawable/deal_background2"
             tools:listitem="@layout/product_list_item" />
     </LinearLayout>
 </layout>

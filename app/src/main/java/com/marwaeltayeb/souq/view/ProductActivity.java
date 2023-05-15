@@ -165,6 +165,8 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         binding.included.content.txtReturn.setOnClickListener(this);
         binding.included.txtSearch.setOnClickListener(this);
         binding.included.content.imageView101.setOnClickListener(this);
+        binding.included.content.imageView8.setOnClickListener(this);
+        binding.included.content.imageView9.setOnClickListener(this);
         setUpViews();
 
         getSales();
@@ -402,6 +404,14 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
                 bundle.putString("New", "New");
                 newIntent.putExtras(bundle);
                 startActivity(newIntent);
+                break;
+            case R.id.imageView8:
+                Intent wishListIntent = new Intent(this, WishListActivity.class);
+                startActivity(wishListIntent);
+                break;
+            case R.id.imageView9:
+                Intent intent = new Intent(this, OrdersActivity.class);
+                startActivity(intent);
                 break;
             default: // Should not get here
         }
@@ -671,13 +681,25 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         int id = menuItem.getItemId();
 
         if (id == R.id.nav_mobiles) {
-            goToCategoryActivity("Mobile");
+            Intent laptopIntent = new Intent(this, AllMobilesActivity.class);
+            bundle = new Bundle();
+            bundle.putString("AllList", "Makeup");
+            laptopIntent.putExtras(bundle);
+            startActivity(laptopIntent);
         } else if (id == R.id.nav_laptops) {
-            goToCategoryActivity("Laptop");
+            Intent laptopIntent = new Intent(this, AllMobilesActivity.class);
+            bundle = new Bundle();
+            bundle.putString("AllList", "Skincare");
+            laptopIntent.putExtras(bundle);
+            startActivity(laptopIntent);
         } else if (id == R.id.nav_babies) {
             goToCategoryActivity("Baby");
         } else if (id == R.id.nav_toys) {
-            goToCategoryActivity("Toy");
+            Intent dealIntent = new Intent(this, DealsActivity.class);
+            bundle = new Bundle();
+            bundle.putString("Deal", "Deal");
+            dealIntent.putExtras(bundle);
+            startActivity(dealIntent);
         } else if (id == R.id.nav_trackOrder) {
             Intent orderIntent = new Intent(this, OrdersActivity.class);
             startActivity(orderIntent);

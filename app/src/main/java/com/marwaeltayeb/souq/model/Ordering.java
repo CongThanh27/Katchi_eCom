@@ -18,6 +18,10 @@ public class Ordering {
     private int quantity;
     @SerializedName("random")
     private int random;
+    @SerializedName("address")
+    private String address;
+    @SerializedName("phone")
+    private String phone;
 
     public Ordering(String nameOnCard, String cardNumber, String fullDate, int userId, int productId) {
         this.nameOnCard = nameOnCard;
@@ -44,6 +48,18 @@ public class Ordering {
         this.productId = productId;
         this.quantity = quantity;
         this.random = random;
+    }
+
+    public Ordering(String nameOnCard, String cardNumber, String fullDate, int userId, int productId, int quantity, int random, String address, String phone) {
+        this.nameOnCard = nameOnCard;
+        this.cardNumber = cardNumber;
+        this.fullDate = fullDate;
+        this.userId = userId;
+        this.productId = productId;
+        this.quantity = quantity;
+        this.random = random;
+        this.address = address;
+        this.phone = phone;
     }
 }
 

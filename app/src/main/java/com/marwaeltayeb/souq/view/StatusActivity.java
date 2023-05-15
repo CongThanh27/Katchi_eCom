@@ -129,13 +129,12 @@ public class StatusActivity extends AppCompatActivity implements View.OnClickLis
         proList = (List<ProductInOrder>) bundle.getSerializable("listProductInOrder");
         //Set values
         orderNumber.setText(order.getOrderNumber());
-
         orderDate.setText(order.getOrderDate());
         //orderStatus.setText(order.getOrderDateStatus());
         String username = LoginUtils.getInstance(this).getUserInfo().getName();
         userName.setText(username);
-        userAddress.setText(order.getShippingAddress());
-        userPhone.setText(order.getShippingPhone());
+        userAddress.setText(proList.get(0).getShippingAddress());
+        userPhone.setText(proList.get(0).getShippingPhone());
 
 
         //chạy vòng for qua proList tính sum price

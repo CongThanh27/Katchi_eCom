@@ -403,11 +403,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"></LinearLayout>
+
             <LinearLayout
                 android:id="@+id/ttnd"
-                android:layout_below="@id/track_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_below="@id/track_layout"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/deal_background2"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -513,6 +519,12 @@
                 android:text="Items Ordered"
                 android:textColor="@color/md_grey_800"
                 />
+
+            <View
+                android:id="@+id/view_"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/md_grey_800" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview"

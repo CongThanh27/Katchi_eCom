@@ -3,6 +3,7 @@ package com.marwaeltayeb.souq.view;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import android.os.Bundle;
@@ -77,6 +78,12 @@ public class PictureBarcodeActivity extends AppCompatActivity implements View.On
                         String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
                 break;
         }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            takeBarcodePicture();
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
+        }
+
     }
 
     @Override
@@ -86,11 +93,15 @@ public class PictureBarcodeActivity extends AppCompatActivity implements View.On
             case REQUEST_CAMERA_PERMISSION:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                     takeBarcodePicture();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Permission Denied!", Toast.LENGTH_SHORT).show();
                 }
+//                else {
+//                    Toast.makeText(getApplicationContext(), "Permission Denied!", Toast.LENGTH_SHORT).show();
+//                }
         }
     }
+
+
+
 
     private void takeBarcodePicture() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -123,6 +134,9 @@ public class PictureBarcodeActivity extends AppCompatActivity implements View.On
         return BitmapFactory.decodeStream(ctx.getContentResolver()
                 .openInputStream(uri), null, bmOptions);
     }
+
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -43,7 +43,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/white_background"
-                android:elevation="3dp"
+                android:elevation="5dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -395,8 +395,9 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:drawableStart="@drawable/giamgia_32"
-                android:text="  Flash Sale"
+                android:text="  Sale"
                 android:textColor="#F283A5"
+                android:gravity="center_vertical"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -406,9 +407,9 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/bg_qt"
+                android:layout_height="40dp"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/deal_background2"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toStartOf="@+id/textSeeAllSales"
                 app:layout_constraintHorizontal_bias="0.467"
@@ -419,7 +420,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="3dp"
                     android:text="Kết thúc sau"
                     android:textColor="#0B0B0B"
                     android:textSize="12sp"
@@ -430,7 +430,7 @@
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="3dp"
+
                     android:background="@drawable/btn_mn"
                     android:gravity="center"
                     android:padding="2dp"
@@ -442,7 +442,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="3dp"
-                    android:layout_marginTop="3dp"
+
                     android:text=":"
                     android:textColor="#000"
                     android:textSize="15dp"
@@ -453,7 +453,7 @@
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="3dp"
-                    android:layout_marginTop="3dp"
+
                     android:background="@drawable/btn_mn"
                     android:gravity="center"
                     android:padding="2dp"
@@ -465,7 +465,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="3dp"
-                    android:layout_marginTop="3dp"
                     android:text=":"
                     android:textColor="#000"
                     android:textSize="15dp"
@@ -476,7 +475,7 @@
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="3dp"
-                    android:layout_marginTop="3dp"
+
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/btn_mn"
                     android:gravity="center"
@@ -504,10 +503,10 @@
                 android:id="@+id/listOfSale"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
 
+                android:layout_margin="10dp"
+                android:background="@drawable/deal_background2"
+                android:padding="@dimen/dimen5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewSales" />
@@ -568,6 +567,7 @@
                 android:textColor="#85CBF8"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:gravity="center_vertical"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout1"
                 tools:ignore="MissingConstraints" />
@@ -589,9 +589,9 @@
                 android:id="@+id/listOfFavorite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
-
+                android:layout_margin="10dp"
+                android:background="@drawable/deal_background2"
+                android:padding="@dimen/dimen5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewFavorite" />
@@ -653,6 +653,7 @@
                 android:textColor="#C0CBE5"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:gravity="center_vertical"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                 tools:ignore="MissingConstraints" />
@@ -674,9 +675,9 @@
                 android:id="@+id/listOfSold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
-
+                android:layout_margin="10dp"
+                android:background="@drawable/deal_background2"
+                android:padding="@dimen/dimen5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewSold" />
@@ -736,6 +737,7 @@
                 android:text="  Makeup"
                 android:textColor="#F9E3AE"
                 android:textSize="16sp"
+                android:gravity="center_vertical"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
@@ -756,9 +758,9 @@
                 android:id="@+id/listOfMobiles"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
-
+                android:layout_margin="10dp"
+                android:background="@drawable/deal_background2"
+                android:padding="@dimen/dimen5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewMobiles" />
@@ -818,6 +820,7 @@
                 android:text="Skincare"
                 android:textColor="#88ABDA"
                 android:textSize="16sp"
+                android:gravity="center_vertical"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
@@ -838,9 +841,9 @@
                 android:id="@+id/listOfLaptops"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
-
+                android:layout_margin="10dp"
+                android:background="@drawable/deal_background2"
+                android:padding="@dimen/dimen5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtSeeAllLaptops" />
@@ -874,9 +877,9 @@
                 android:id="@+id/historyList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="5dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/deal_background2"
+                android:padding="@dimen/dimen5dp"
                 android:layout_marginBottom="25dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

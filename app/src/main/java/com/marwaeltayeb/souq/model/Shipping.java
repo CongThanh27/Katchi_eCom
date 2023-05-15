@@ -19,6 +19,7 @@ public class Shipping {
     @SerializedName("productId")
     private int productId;
 
+
     public Shipping(String address, String city, String country, String zip, String phone, int userId, int productId) {
         this.address = address;
         this.city = city;
@@ -27,5 +28,6 @@ public class Shipping {
         this.phone = phone;
         this.userId = userId;
         this.productId = productId;
+
     }
 }
